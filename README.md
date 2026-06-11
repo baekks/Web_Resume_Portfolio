@@ -2,13 +2,13 @@
 
 > React와 Vite로 제작한 개인 웹 이력서 포트폴리오입니다. 마인드맵 메인 화면에서 시작해 소개, 기술 스택, 경력, 프로젝트, 연락처를 한 흐름으로 확인할 수 있습니다.
 
-![Web Resume Portfolio preview](version3/public/assets/web-resume-version3.png)
+![Web Resume Portfolio preview](public/assets/web-resume-version3.png)
 
 ## 데모
 
 - GitHub: [baekks/Web_Resume_Portfolio](https://github.com/baekks/Web_Resume_Portfolio)
 - 로컬 실행 주소: `http://127.0.0.1:5173/`
-- 주요 버전: `version3`
+- 프로젝트 위치: 저장소 루트
 
 ## 프로젝트 목표
 
@@ -40,20 +40,19 @@
 ```text
 Web_Resume_Portfolio/
 ├─ README.md
-└─ version3/
-   ├─ index.html
-   ├─ package.json
-   ├─ public/
-   │  └─ assets/
-   └─ src/
-      ├─ App.jsx
-      ├─ Version3.jsx
-      ├─ components/
-      ├─ data/
-      │  └─ portfolioData.js
-      ├─ main.jsx
-      ├─ styles.css
-      └─ version2.css
+├─ index.html
+├─ package.json
+├─ public/
+│  └─ assets/
+└─ src/
+   ├─ App.jsx
+   ├─ Version3.jsx
+   ├─ components/
+   ├─ data/
+   │  └─ portfolioData.js
+   ├─ main.jsx
+   ├─ styles.css
+   └─ version2.css
 ```
 
 ## 실행 방법
@@ -62,7 +61,7 @@ Web_Resume_Portfolio/
 
 ```bash
 git clone https://github.com/baekks/Web_Resume_Portfolio.git
-cd Web_Resume_Portfolio/version3
+cd Web_Resume_Portfolio
 ```
 
 ### 2. 의존성 설치
@@ -85,7 +84,7 @@ npm run dev
 npm run build
 ```
 
-빌드 결과물은 `version3/dist/` 폴더에 생성됩니다.
+빌드 결과물은 `dist/` 폴더에 생성됩니다.
 
 ## 구현 과정과 핵심 의사결정
 
