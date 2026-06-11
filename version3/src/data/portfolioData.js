@@ -1,0 +1,278 @@
+import {
+  Code2,
+  Database,
+  MonitorCheck,
+  ServerCog,
+  Sparkles,
+  Wrench,
+} from 'lucide-react';
+
+export const projects = [
+  {
+    no: 1,
+    title: 'Shop_Portfolio',
+    category: 'personal',
+    image: '/assets/shop-portfolio-project.png',
+    tags: ['React.js', 'API Integration', 'CSS3'],
+    summary:
+      '컴포넌트 기반 UI, useState/useEffect를 활용한 상태 관리 및 REST API 비동기 데이터 핸들링을 적용한 종합 쇼핑몰 포트폴리오입니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/Shop_Portfolio',
+  },
+  {
+    no: 2,
+    title: 'Web_Homepage',
+    category: 'personal',
+    image: '/assets/web-homepage-project.png',
+    tags: ['HTML5', 'CSS3', 'JS'],
+    summary: '시맨틱 태그와 반응형 레이아웃을 구현한 개인 웹사이트 프로젝트입니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/Web_Homepage',
+  },
+  {
+    no: 3,
+    title: 'Messenger Solution',
+    category: 'work',
+    image: '/assets/wemeets-homepage.png',
+    tags: ['Java', 'Spring', 'Oracle DB'],
+    summary:
+      '전자회의 솔루션 및 기업용 메신저의 웹 버전 서버 개발에 참여하며 백엔드 API와 데이터베이스 연동을 담당했습니다.',
+    action: 'Company Site',
+    url: 'https://www.wemeets.co.kr/',
+  },
+  {
+    no: 4,
+    title: 'ProjectA (Team)',
+    category: 'team',
+    image: '/assets/projecta-team.png',
+    tags: ['Java', 'Spring Boot', 'JPA'],
+    summary:
+      '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 일정 관리와 DB 연동 업무를 수행했습니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/Team-ProjectA',
+  },
+  {
+    no: 5,
+    title: 'Assembly Maintenance',
+    category: 'work',
+    image: '/assets/jeyun-homepage.png',
+    tags: ['Linux', 'CentOS', 'Shell Script'],
+    summary:
+      '의회 홈페이지의 서버 유지보수와 장애 처리를 담당하며 웹 서버 배포 및 운영 모니터링을 수행한 실무 경험입니다.',
+    action: 'Company Site',
+    url: 'https://www.jeyun.com/',
+  },
+  {
+    no: 6,
+    title: 'Gyeongju Culture Tour',
+    category: 'personal',
+    image: '/assets/gyeongju-tour-project.png',
+    tags: ['HTML5', 'CSS3', 'JavaScript'],
+    summary:
+      '스마트 모빌리티 DX Academy 미니 1차 개인 프로젝트입니다. HTML/CSS/JavaScript만으로 경주 문화관광 소개형 정적 웹사이트를 구성했습니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/baekks.github.io',
+  },
+  {
+    no: 7,
+    title: 'Jeju Culture & Tourism',
+    category: 'team',
+    image: '/assets/jeju-culture-tourism.png',
+    tags: ['HTML5', 'CSS3', 'JavaScript'],
+    summary:
+      '제주 문화관광 정보를 소개하는 웹 프로젝트입니다. 관광지, 여행, 축제/행사, 커뮤니티 화면을 구성했습니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/hwandroid921.github.io',
+  },
+  {
+    no: 8,
+    title: 'LUXE SHOP',
+    category: 'personal',
+    image: '/assets/luxe-shop-project.png',
+    tags: ['Vue', 'Vite', 'Frontend'],
+    summary:
+      '스마트 모빌리티 DX Academy 미니 2차 개인 프로젝트입니다. Vite 기반 프론트엔드와 JSON 상품 데이터를 활용해 쇼핑몰 화면을 구현했습니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/baekks.github.io',
+  },
+  {
+    no: 9,
+    title: 'ReadMe',
+    category: 'team',
+    image: '/assets/readme-project.png',
+    tags: ['Vue', 'Book Store', 'Team Project'],
+    summary:
+      '스마트 모빌리티 DX Academy 미니 2차 프로젝트로, 3인 팀에서 제작한 도서 쇼핑몰 웹 서비스입니다. 도서 탐색, 이벤트, 주문 흐름 화면 구현에 참여했습니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/lasr3423.github.io',
+  },
+  {
+    no: 10,
+    title: 'LogMile',
+    category: 'team',
+    image: '/assets/logmile-project.png',
+    tags: ['Vue', 'Vite', 'Team Project'],
+    summary:
+      '스마트 모빌리티 DX Academy 1차 본 프로젝트로, 2인 팀에서 제작한 화물차 운수업 피로도 모니터링 시뮬레이션 웹 서비스입니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/logmile',
+  },
+  {
+    no: 11,
+    title: 'Web Resume Portfolio',
+    category: 'personal',
+    image: '/assets/web-resume-version3.png',
+    tags: ['React', 'Vite', 'Portfolio'],
+    summary:
+      'React 기반으로 제작한 웹 이력서 포트폴리오입니다. 마인드맵 메인, 프로젝트 필터, 경력/기술 스택 구성을 포함한 인터랙티브 이력서입니다.',
+    action: 'GitHub Repo',
+    url: 'https://github.com/baekks/Web_Resume_Portfolio',
+  },
+];
+
+export const skillGroups = [
+  {
+    icon: Code2,
+    title: 'Languages',
+    groups: [
+      { label: '주요 사용', values: ['Java', 'JavaScript', 'HTML5', 'CSS3'] },
+      { label: '사용 경험', values: ['Python', 'C', 'R', 'SQL', 'Shell Script'] },
+    ],
+  },
+  {
+    icon: MonitorCheck,
+    title: 'Frontend',
+    groups: [
+      { label: '라이브러리·프레임워크', values: ['React.js', 'Vue.js', 'Redux', 'Pinia'] },
+      { label: '빌드·통신', values: ['Vite', 'Axios', 'Fetch API'] },
+      { label: '스타일링', values: ['CSS Modules', 'Responsive Layout', 'UI/UX Design'] },
+    ],
+  },
+  {
+    icon: ServerCog,
+    title: 'Backend',
+    groups: [
+      { label: '프레임워크', values: ['Spring Boot', 'Spring MVC', 'Thymeleaf', 'JSP', 'Web Servlet'] },
+      { label: '데이터 접근', values: ['JPA', 'MyBatis', 'JDBC'] },
+      { label: '보안·검증', values: ['Spring Security', 'Validation', 'REST API'] },
+    ],
+  },
+  {
+    icon: Database,
+    title: 'Database & Infra',
+    groups: [
+      { label: 'Database', values: ['PostgreSQL', 'Oracle DB', 'MySQL'] },
+      { label: 'Server', values: ['Linux', 'CentOS', 'Apache', 'Tomcat'] },
+      { label: 'Infra', values: ['Docker', 'AWS', 'Raspberry Pi', 'MQTT'] },
+    ],
+  },
+  {
+    icon: Wrench,
+    title: 'Tools & Workflow',
+    groups: [
+      { label: '개발 도구', values: ['VS Code', 'IntelliJ IDEA', 'Eclipse'] },
+      { label: '협업·버전관리', values: ['Git', 'GitHub', 'SVN', 'Notion'] },
+      { label: '테스트·API', values: ['Postman', 'Maven', 'Gradle'] },
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: 'Learning & Expanding',
+    groups: [
+      { label: 'AI·데이터', values: ['FastAPI', 'PyTorch', 'OpenCV', 'YOLO', 'OCR'] },
+      { label: '관심 영역', values: ['CI/CD Pipeline', 'Unit Test', 'Cloud Native'] },
+    ],
+  },
+];
+
+export const careerItems = [
+  {
+    type: 'Education',
+    title: '스마트 모빌리티 DX Academy',
+    org: 'MBC 아카데미 컴퓨터 교육센터',
+    period: '2025.12 - Present',
+    body: '웹설계 기초, AI 프로그래밍, React, Vue, UI/UX 설계 및 저작 학습 중.',
+  },
+  {
+    type: 'Academic',
+    title: '컴퓨터공학과',
+    org: '방송통신대학교',
+    period: '2024.03 - Present',
+    body: '컴퓨터공학 전공 지식 습득 및 실무 학습 중.',
+  },
+  {
+    type: 'Tech Support',
+    title: '기술지원 사원',
+    org: '(주)제윤',
+    url: 'https://www.jeyun.com/',
+    period: '2023.10 - 2024.10',
+    body: 'Linux/CentOS 환경 웹 서버 배포 및 모니터링, 장애 원인 분석과 복구 대응.',
+  },
+  {
+    type: 'Training',
+    title: 'Java 웹 앱 개발 통합 과정',
+    org: '코리아 IT 아카데미',
+    period: '2022.06 - 2023.02',
+    body: 'Java, Spring Boot, JPA, React.js 등 풀스택 개발 역량 강화.',
+  },
+  {
+    type: 'Internship',
+    title: '웹개발 인턴',
+    org: '주식회사 위미츠',
+    url: 'https://www.wemeets.co.kr/',
+    period: '2022.01 - 2022.04',
+    body: 'Java/Spring 기반 백엔드 API 개발 및 데이터베이스 연동 실무 경험.',
+  },
+  {
+    type: 'Training',
+    title: '자바 빅데이터 풀스택 과정',
+    org: '인천직업능력교육원',
+    period: '2021.06 - 2021.11',
+    body: 'Java 기반 웹 개발, 빅데이터 처리, 데이터베이스 연동 및 풀스택 개발 기초 학습.',
+  },
+  {
+    type: 'Administration',
+    title: '관리팀 사원',
+    org: '(주)화성',
+    period: '2020.12 - 2021.06',
+    body: 'MES 제조실행시스템 운영 및 데이터 관리 담당.',
+  },
+  {
+    type: 'Academic',
+    title: '컴퓨터정보전자과 디지털전자전공',
+    org: '구미대학교',
+    period: '2012.03 - 2014.02',
+    body: '컴퓨터정보전자 및 디지털전자 전공 과정 이수.',
+  },
+];
+
+export const mindMapNodes = [
+  { label: 'Full-stack', x: 50, y: 12, size: 'large' },
+  { label: 'Backend', x: 23, y: 32, size: 'large' },
+  { label: 'Frontend', x: 77, y: 32, size: 'large' },
+  { label: 'Operations', x: 23, y: 66, size: 'large' },
+  { label: 'Workflow', x: 77, y: 66, size: 'large' },
+  { label: 'Growth', x: 50, y: 83, size: 'medium' },
+  { label: 'Java', x: 12, y: 19, size: 'small', parent: 'Backend' },
+  { label: 'Spring Boot', x: 13, y: 38, size: 'small', parent: 'Backend' },
+  { label: 'REST API', x: 12, y: 51, size: 'small', parent: 'Backend' },
+  { label: 'JPA / MyBatis', x: 36, y: 20, size: 'small', parent: 'Backend' },
+  { label: 'Validation', x: 24, y: 46, size: 'small', parent: 'Backend' },
+  { label: 'React', x: 65, y: 20, size: 'small', parent: 'Frontend' },
+  { label: 'State UI', x: 80, y: 17, size: 'small', parent: 'Frontend' },
+  { label: 'Vue', x: 88, y: 29, size: 'small', parent: 'Frontend' },
+  { label: 'Responsive UI', x: 87, y: 45, size: 'small', parent: 'Frontend' },
+  { label: 'UX Flow', x: 72, y: 51, size: 'small', parent: 'Frontend' },
+  { label: 'Linux', x: 12, y: 60, size: 'small', parent: 'Operations' },
+  { label: 'CentOS', x: 13, y: 79, size: 'small', parent: 'Operations' },
+  { label: 'Monitoring', x: 37, y: 62, size: 'small', parent: 'Operations' },
+  { label: 'PostgreSQL', x: 40, y: 76, size: 'small', parent: 'Operations' },
+  { label: 'Maintenance', x: 28, y: 90, size: 'small', parent: 'Operations' },
+  { label: 'GitHub', x: 88, y: 59, size: 'small', parent: 'Workflow' },
+  { label: 'Postman', x: 88, y: 78, size: 'small', parent: 'Workflow' },
+  { label: 'Notion', x: 64, y: 72, size: 'small', parent: 'Workflow' },
+  { label: 'Docs', x: 68, y: 89, size: 'small', parent: 'Workflow' },
+  { label: 'CI/CD', x: 50, y: 69, size: 'small', parent: 'Growth' },
+  { label: 'FastAPI', x: 41, y: 96, size: 'small', parent: 'Growth' },
+  { label: 'OpenCV', x: 59, y: 96, size: 'small', parent: 'Growth' },
+];
