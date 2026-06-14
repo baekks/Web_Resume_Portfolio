@@ -375,6 +375,14 @@
   justify-content: center;
 }
 
+.v2-contact-links a.is-disabled {
+  border-color: rgba(200, 208, 218, 0.24);
+  background: rgba(33, 40, 66, 0.74);
+  color: rgba(200, 208, 218, 0.46);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
 .v2-contact-links svg {
   flex: 0 0 auto;
   color: currentColor;
@@ -384,6 +392,11 @@
 .v2-contact .v2-contact-links a svg {
   color: #212842;
   stroke: #212842;
+}
+
+.v2-contact .v2-contact-links a.is-disabled svg {
+  color: rgba(200, 208, 218, 0.46);
+  stroke: rgba(200, 208, 218, 0.46);
 }
 
 .v3-mindmap-main {
