@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import About from './components/About.jsx';
 import Career from './components/Career.jsx';
 import Contact from './components/Contact.jsx';
@@ -14,18 +14,35 @@ export default function Version3() {
   const [launching, setLaunching] = useState(false);
   const wheelLock = useRef(false);
 
+  useEffect(() => {
+    if (entered) {
+      return undefined;
+    }
+
+    const previousBodyOverflow = document.body.style.overflowY;
+    const previousHtmlOverflow = document.documentElement.style.overflowY;
+    document.body.style.overflowY = 'hidden';
+    document.documentElement.style.overflowY = 'hidden';
+
+    return () => {
+      document.body.style.overflowY = previousBodyOverflow;
+      document.documentElement.style.overflowY = previousHtmlOverflow;
+    };
+  }, [entered]);
+
   const enterPortfolio = () => {
     if (launching || wheelLock.current) {
       return;
     }
     wheelLock.current = true;
     setLaunching(true);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     window.setTimeout(() => {
       setEntered(true);
       setLaunching(false);
       wheelLock.current = false;
       window.setTimeout(() => {
-        document.querySelector('#v2-top')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelector('#v2-top')?.scrollIntoView({ behavior: 'auto', block: 'start' });
       }, 0);
     }, 860);
   };
@@ -46,7 +63,7 @@ export default function Version3() {
         </div>
       )}
 
-      <Footer />
+      {entered ? <Footer /> : null}
     </main>
   );
 }
