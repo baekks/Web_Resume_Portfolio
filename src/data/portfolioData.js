@@ -16,6 +16,7 @@ export const projects = [
     tags: ['React.js', 'API Integration', 'CSS3'],
     summary:
       '컴포넌트 기반 UI, useState/useEffect를 활용한 상태 관리 및 REST API 비동기 데이터 핸들링을 적용한 종합 쇼핑몰 포트폴리오입니다.',
+    role: 'React 컴포넌트 UI, 상태 관리, REST API 데이터 연동',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/Shop_Portfolio',
   },
@@ -26,6 +27,7 @@ export const projects = [
     image: '/assets/web-homepage-project.png',
     tags: ['HTML5', 'CSS3', 'JS'],
     summary: '시맨틱 태그와 반응형 레이아웃을 구현한 개인 웹사이트 프로젝트입니다.',
+    role: '시맨틱 마크업, 반응형 레이아웃, 정적 페이지 구현',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/Web_Homepage',
   },
@@ -37,6 +39,7 @@ export const projects = [
     tags: ['Java', 'Spring', 'Oracle DB'],
     summary:
       '전자회의 솔루션 및 기업용 메신저의 웹 버전 서버 개발에 참여하며 백엔드 API와 데이터베이스 연동을 담당했습니다.',
+    role: 'Spring 기반 백엔드 API 개발, Oracle DB 연동',
     action: 'Company Site',
     url: 'https://www.wemeets.co.kr/',
   },
@@ -48,6 +51,14 @@ export const projects = [
     tags: ['Java', 'Spring Boot', 'JPA'],
     summary:
       '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 일정 관리와 DB 연동 업무를 수행했습니다.',
+    role: '일정 관리, DB 연동, 관광 정보 기능 구현',
+    detail: {
+      type: 'Team Project',
+      overview: '한국 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다.',
+      roles: ['일정 관리 기능 구현', '관광 정보 데이터 연동', 'Spring Boot와 JPA 기반 서버 기능 구현'],
+      features: ['관광지 정보 조회', '여행 일정 관리', '지역별 문화관광 콘텐츠 구성'],
+      learned: ['프론트엔드와 백엔드 데이터 흐름을 연결하는 과정을 경험했습니다.', '팀 프로젝트에서 기능 범위를 나누고 GitHub로 협업하는 방식을 익혔습니다.'],
+    },
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/Team-ProjectA',
   },
@@ -59,6 +70,7 @@ export const projects = [
     tags: ['Linux', 'CentOS', 'Shell Script'],
     summary:
       '의회 홈페이지의 서버 유지보수와 장애 처리를 담당하며 웹 서버 배포 및 운영 모니터링을 수행한 실무 경험입니다.',
+    role: 'Linux 서버 유지보수, 배포 확인, 장애 대응',
     action: 'Company Site',
     url: 'https://www.jeyun.com/',
   },
@@ -70,6 +82,7 @@ export const projects = [
     tags: ['HTML5', 'CSS3', 'JavaScript'],
     summary:
       '스마트 모빌리티 DX Academy 미니 1차 개인 프로젝트입니다. HTML/CSS/JavaScript만으로 경주 문화관광 소개형 정적 웹사이트를 구성했습니다.',
+    role: '정적 웹사이트 구조 설계, 관광 콘텐츠 화면 구현',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/baekks.github.io',
   },
@@ -81,6 +94,14 @@ export const projects = [
     tags: ['HTML5', 'CSS3', 'JavaScript'],
     summary:
       '제주 문화관광 정보를 소개하는 웹 프로젝트입니다. 관광지, 여행, 축제/행사, 커뮤니티 화면을 구성했습니다.',
+    role: '관광, 여행, 축제 화면 구현 및 팀 페이지 구성',
+    detail: {
+      type: 'Team Project',
+      overview: '제주 관광지, 여행 코스, 축제 정보를 소개하는 문화관광 웹사이트입니다.',
+      roles: ['관광/여행/축제 화면 구현', '팀 페이지 구조 구성', '정적 웹페이지 레이아웃 정리'],
+      features: ['관광지 소개 화면', '여행 정보 화면', '축제/행사 콘텐츠 화면', '커뮤니티 화면'],
+      learned: ['여러 페이지의 디자인 톤과 정보 구조를 맞추는 과정을 경험했습니다.', '정적 웹사이트에서 사용자 흐름을 고려한 메뉴 구성을 학습했습니다.'],
+    },
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/hwandroid921.github.io',
   },
@@ -92,6 +113,7 @@ export const projects = [
     tags: ['Vue', 'Vite', 'Frontend'],
     summary:
       '스마트 모빌리티 DX Academy 미니 2차 개인 프로젝트입니다. Vite 기반 프론트엔드와 JSON 상품 데이터를 활용해 쇼핑몰 화면을 구현했습니다.',
+    role: 'Vue/Vite 쇼핑몰 화면 구현, JSON 상품 데이터 활용',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/baekks.github.io',
   },
@@ -103,6 +125,14 @@ export const projects = [
     tags: ['Vue', 'Book Store', 'Team Project'],
     summary:
       '스마트 모빌리티 DX Academy 미니 2차 프로젝트로, 3인 팀에서 제작한 도서 쇼핑몰 웹 서비스입니다. 도서 탐색, 이벤트, 주문 흐름 화면 구현에 참여했습니다.',
+    role: '도서 탐색, 이벤트, 주문 흐름 화면 구현',
+    detail: {
+      type: 'Team Project',
+      overview: '도서 탐색부터 주문 흐름까지 구성한 Vue 기반 도서 쇼핑몰 웹 서비스입니다.',
+      roles: ['도서 목록 및 상세 화면 구현', '이벤트 페이지 구성', '주문 흐름 화면 구현'],
+      features: ['도서 목록/상세', '이벤트 화면', '장바구니 및 주문 흐름', '팀 프로젝트 화면 구성'],
+      learned: ['Vue 컴포넌트 기반 화면 구성을 실습했습니다.', '쇼핑몰 서비스의 기본 사용자 흐름을 화면 단위로 설계했습니다.'],
+    },
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/lasr3423.github.io',
   },
@@ -114,6 +144,14 @@ export const projects = [
     tags: ['Vue', 'Vite', 'Team Project'],
     summary:
       '스마트 모빌리티 DX Academy 1차 본 프로젝트로, 2인 팀에서 제작한 화물차 운수업 피로도 모니터링 시뮬레이션 웹 서비스입니다.',
+    role: 'Vue 기반 시뮬레이션 화면 구현, 팀 프로젝트 협업',
+    detail: {
+      type: 'Team Project',
+      overview: '화물차 운수업 환경을 기준으로 피로도 모니터링 흐름을 시뮬레이션한 웹 서비스입니다.',
+      roles: ['Vue 기반 시뮬레이션 화면 구현', '상태 변화에 따른 화면 흐름 구성', '2인 팀 프로젝트 협업'],
+      features: ['피로도 모니터링 화면', '운행 상태 시뮬레이션', '결과 확인 화면', '반응형 UI 구성'],
+      learned: ['데이터 상태 변화가 화면에 반영되는 구조를 학습했습니다.', '작은 팀에서 기능 구현과 일정 조율을 함께 진행했습니다.'],
+    },
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/logmile',
   },
@@ -125,6 +163,14 @@ export const projects = [
     tags: ['React', 'Vite', 'Portfolio'],
     summary:
       'React 기반으로 제작한 웹 이력서 포트폴리오입니다. 마인드맵 메인, 프로젝트 필터, 경력/기술 스택 구성을 포함한 인터랙티브 이력서입니다.',
+    role: 'React 포트폴리오 UI, 네트워크 메인, Contact/Resume 연결',
+    detail: {
+      type: 'Personal Project',
+      overview: '이력, 기술 스택, 프로젝트, 학습 기록을 한 화면 흐름으로 정리한 React 기반 웹 포트폴리오입니다.',
+      roles: ['네트워크 그래프 메인 구현', '프로젝트 필터 및 상세 정보 구성', 'Contact, Notion, Resume 연결'],
+      features: ['인터랙티브 네트워크 메인', '학력/교육/경력 분리', '프로젝트 필터', '대표 프로젝트 상세 모달', 'Resume 다운로드'],
+      learned: ['채용 담당자가 확인하기 쉬운 정보 구조를 기준으로 섹션을 재정리했습니다.', 'React 상태 관리와 CSS 반응형 레이아웃을 포트폴리오 화면에 적용했습니다.'],
+    },
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/Web_Resume_Portfolio',
   },

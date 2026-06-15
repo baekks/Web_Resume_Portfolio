@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { ArrowRight, ExternalLink, X } from 'lucide-react';
 import { projects } from '../data/portfolioData.js';
 
 const projectFilters = [
@@ -11,11 +12,90 @@ const projectFilters = [
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const sortedProjects = [...projects].sort((a, b) => a.no - b.no);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const sortedProjects = [...projects].sort((a, b) => b.no - a.no);
   const filteredProjects =
     activeFilter === 'all'
       ? sortedProjects
       : sortedProjects.filter((project) => project.category === activeFilter);
+  const projectModal = selectedProject ? (
+    <div className="v2-modal-backdrop" role="presentation" onMouseDown={() => setSelectedProject(null)}>
+      <article
+        className="v2-project-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <button className="v2-modal-close" type="button" aria-label="프로젝트 상세 닫기" onClick={() => setSelectedProject(null)}>
+          <X size={18} />
+        </button>
+        <div className="v2-modal-head">
+          <span>{selectedProject.detail.type}</span>
+          <h3 id="project-modal-title">{selectedProject.title}</h3>
+          <p>{selectedProject.detail.overview}</p>
+        </div>
+        <div className="v2-modal-grid">
+          <div className="v2-modal-section">
+            <h4>담당 역할</h4>
+            <ul>
+              {selectedProject.detail.roles.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="v2-modal-section">
+            <h4>주요 기능</h4>
+            <ul>
+              {selectedProject.detail.features.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="v2-modal-section">
+            <h4>기술 스택</h4>
+            <div className="v2-modal-tags">
+              {selectedProject.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div className="v2-modal-section">
+            <h4>배운 점</h4>
+            <ul>
+              {selectedProject.detail.learned.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <a className="v2-modal-link" href={selectedProject.url} target="_blank" rel="noreferrer">
+          {selectedProject.action}
+          <ExternalLink size={14} />
+        </a>
+      </article>
+    </div>
+  ) : null;
+
+  useEffect(() => {
+    if (!selectedProject) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedProject(null);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
 
   return (
     <section className="v2-panel v2-projects-panel" id="v2-projects">
@@ -47,14 +127,29 @@ export default function Projects() {
               </div>
               <h3>{project.title}</h3>
               <p>{project.summary}</p>
-              <a href={project.url ?? '#v2-top'} target={project.url ? '_blank' : undefined} rel={project.url ? 'noreferrer' : undefined}>
-                {project.action}
-                <ArrowRight size={14} />
-              </a>
+              {project.role ? (
+                <div className="v2-project-role">
+                  <span>Role</span>
+                  <strong>{project.role}</strong>
+                </div>
+              ) : null}
+              <div className="v2-project-actions">
+                {project.detail ? (
+                  <button type="button" onClick={() => setSelectedProject(project)}>
+                    Details
+                    <ArrowRight size={14} />
+                  </button>
+                ) : null}
+                <a href={project.url ?? '#v2-top'} target={project.url ? '_blank' : undefined} rel={project.url ? 'noreferrer' : undefined}>
+                  {project.action}
+                  <ExternalLink size={14} />
+                </a>
+              </div>
             </div>
           </article>
         ))}
       </div>
+      {projectModal ? createPortal(projectModal, document.body) : null}
     </section>
   );
 }

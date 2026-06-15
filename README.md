@@ -22,10 +22,13 @@
 - 네트워크 그래프 기반 메인 인터랙션
 - 노드 hover, focus, click 시 관련 연결선 강조
 - 메인 화면에서 스크롤, 터치 스와이프, 키보드 입력으로 이력서 본문 진입
-- About, Skills, Career, Projects, Contact 섹션 구성
+- About, Skills, Core Strengths, Architecture / Workflow, Career, Projects, Learning Docs, Contact 섹션 구성
+- 주요 강점 4가지와 프로젝트별 담당 역할 정리
 - Career 섹션의 학력사항, 교육사항, 경력사항 분리
 - 개인, 팀, 실무 프로젝트 필터링
 - 프로젝트별 이미지, 기술 태그, 요약, 외부 링크 제공
+- 대표 프로젝트 5개 상세 모달 제공
+- Notion 학습 문서 섹션 제공
 - Contact 섹션 2x2 버튼 배치
 - GitHub, Notion, Email, Resume 다운로드 연결
 - 반응형 레이아웃과 접근 가능한 키보드 진입 흐름
@@ -37,8 +40,11 @@
 | Main | 네트워크 연결망 형태로 핵심 역량과 기술 흐름을 보여주는 첫 화면 |
 | About | 개발자 소개와 방향성 |
 | Skills | 언어, 프론트엔드, 백엔드, 데이터베이스, 인프라, 협업 도구 정리 |
+| Core Strengths | 백엔드, 프론트엔드, 운영, 협업 역량 요약 |
+| Architecture / Workflow | 화면, 서버, 데이터, 운영 관점과 작업 흐름 정리 |
 | Career | 학력사항, 교육사항, 경력사항을 분리한 이력 구성 |
-| Projects | 개인, 팀, 실무 프로젝트 카드와 필터 |
+| Projects | 개인, 팀, 실무 프로젝트 카드와 대표 프로젝트 상세 모달 |
+| Learning Docs | Notion 학습 정리 페이지 연결 |
 | Contact | GitHub, Notion, Email, Resume 버튼 제공 |
 
 ## 기술 스택과 선택 이유
@@ -65,7 +71,43 @@
 
 ### 프로젝트 데이터 관리
 
-프로젝트, 기술 스택, 경력, 네트워크 노드 데이터는 `src/data/portfolioData.js`에 모아 관리합니다. Career 데이터에는 `academic`, `education`, `career` 분류값을 두어 학력사항, 교육사항, 경력사항을 구분해 렌더링합니다.
+프로젝트, 기술 스택, 경력, 네트워크 노드 데이터는 `src/data/portfolioData.js`에 모아 관리합니다. 프로젝트 데이터에는 담당 역할을 함께 두어 카드에서 요약과 역할을 분리해 보여줍니다. 대표 프로젝트 5개에는 상세 데이터를 추가해 모달에서 개요, 담당 역할, 주요 기능, 기술 스택, 배운 점을 확인할 수 있도록 구성했습니다. Career 데이터에는 `academic`, `education`, `career` 분류값을 두어 학력사항, 교육사항, 경력사항을 구분해 렌더링합니다.
+
+상세 모달이 적용된 프로젝트는 아래와 같습니다.
+
+```text
+ProjectA (Team)
+Jeju Culture & Tourism
+ReadMe
+LogMile
+Web Resume Portfolio
+```
+
+### Core Strengths
+
+Core Strengths 섹션은 아래 4가지 기준으로 구성했습니다.
+
+```text
+Backend Foundation
+Frontend Implementation
+Operations Experience
+Collaboration
+```
+
+각 항목은 사용 기술과 업무 방향을 짧게 보여주도록 정리했습니다.
+
+### Architecture / Workflow
+
+Architecture / Workflow 섹션은 개발할 때 보는 구조와 작업 흐름을 분리해 보여줍니다.
+
+```text
+Client UI
+Server Logic
+Data Flow
+Operation
+```
+
+작업 흐름은 기능 구조화, 구현과 협업, 검증과 정리 순서로 구성했습니다.
 
 ### Career 구성
 
@@ -106,10 +148,13 @@ Web_Resume_Portfolio/
    ├─ Version3.jsx
    ├─ components/
    │  ├─ About.jsx
+   │  ├─ ArchitectureWorkflow.jsx
    │  ├─ Career.jsx
    │  ├─ Contact.jsx
+   │  ├─ CoreStrengths.jsx
    │  ├─ Footer.jsx
    │  ├─ Header.jsx
+   │  ├─ LearningDocs.jsx
    │  ├─ Main.jsx
    │  ├─ Projects.jsx
    │  └─ Skills.jsx
@@ -158,6 +203,9 @@ npm run build
 - 포스 디렉티드 그래프도 검토했지만, 현재 포트폴리오에서는 의도한 역량 배치를 명확하게 보여주는 고정 좌표 네트워크가 더 적합하다고 판단했습니다.
 - Career 섹션은 피드백을 반영해 학력사항, 교육사항, 경력사항으로 분리했습니다.
 - Contact 섹션은 채용 담당자가 바로 이동하거나 다운로드할 수 있도록 GitHub, Notion, Email, Resume 네 가지 동작으로 정리했습니다.
+- Architecture / Workflow 섹션은 화면, 서버, 데이터, 운영 관점을 기준으로 작업 방식을 설명하도록 추가했습니다.
+- 프로젝트 카드에는 담당 역할을 추가하고, 대표 프로젝트 5개는 상세 모달로 참여 범위를 더 자세히 확인할 수 있도록 구성했습니다.
+- 학습 기록은 별도 섹션으로 분리해 Notion 문서로 이동할 수 있도록 연결했습니다.
 - 빌드 결과물과 의존성 폴더는 `.gitignore`로 제외하고, 소스와 공개 에셋만 관리합니다.
 
 ## 검증

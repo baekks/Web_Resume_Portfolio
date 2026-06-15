@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import About from './components/About.jsx';
+import ArchitectureWorkflow from './components/ArchitectureWorkflow.jsx';
 import Career from './components/Career.jsx';
 import Contact from './components/Contact.jsx';
+import CoreStrengths from './components/CoreStrengths.jsx';
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
+import LearningDocs from './components/LearningDocs.jsx';
 import Main from './components/Main.jsx';
 import Projects from './components/Projects.jsx';
 import Skills from './components/Skills.jsx';
@@ -57,8 +60,11 @@ export default function Version3() {
         <div className="v2-content">
           <About />
           <Skills />
+          <CoreStrengths />
+          <ArchitectureWorkflow />
           <Career />
           <Projects />
+          <LearningDocs />
           <Contact />
         </div>
       )}
