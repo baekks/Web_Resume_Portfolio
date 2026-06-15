@@ -21,7 +21,7 @@ export default function About() {
         </p>
       </div>
       <aside className="v2-hero-portrait" aria-label="Baek Kyung-seo profile image">
-        <img src="/assets/portrait-about.png" alt="백경서 프로필 일러스트" />
+        <img src="/assets/profile-photo.jpeg" alt="백경서 프로필 사진" />
       </aside>
     </section>
   );
