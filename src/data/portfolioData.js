@@ -187,13 +187,15 @@ export const skillGroups = [
 
 export const careerItems = [
   {
+    section: 'education',
     type: 'Education',
     title: '스마트 모빌리티 DX Academy',
     org: 'MBC 아카데미 컴퓨터 교육센터',
     period: '2025.12 - Present',
-    body: '웹설계 기초, AI 프로그래밍, React, Vue, UI/UX 설계 및 저작 학습 중.',
+    body: '웹설계 기초, AI 프로그래밍, React, Vue, UI/UX 설계 및 제작 학습 중.',
   },
   {
+    section: 'academic',
     type: 'Academic',
     title: '컴퓨터공학과',
     org: '방송통신대학교',
@@ -201,6 +203,7 @@ export const careerItems = [
     body: '컴퓨터공학 전공 지식 습득 및 실무 학습 중.',
   },
   {
+    section: 'career',
     type: 'Tech Support',
     title: '기술지원 사원',
     org: '(주)제윤',
@@ -209,6 +212,7 @@ export const careerItems = [
     body: 'Linux/CentOS 환경 웹 서버 배포 및 모니터링, 장애 원인 분석과 복구 대응.',
   },
   {
+    section: 'education',
     type: 'Training',
     title: 'Java 웹 앱 개발 통합 과정',
     org: '코리아 IT 아카데미',
@@ -216,6 +220,7 @@ export const careerItems = [
     body: 'Java, Spring Boot, JPA, React.js 등 풀스택 개발 역량 강화.',
   },
   {
+    section: 'career',
     type: 'Internship',
     title: '웹개발 인턴',
     org: '주식회사 위미츠',
@@ -224,6 +229,7 @@ export const careerItems = [
     body: 'Java/Spring 기반 백엔드 API 개발 및 데이터베이스 연동 실무 경험.',
   },
   {
+    section: 'education',
     type: 'Training',
     title: '자바 빅데이터 풀스택 과정',
     org: '인천직업능력교육원',
@@ -231,6 +237,7 @@ export const careerItems = [
     body: 'Java 기반 웹 개발, 빅데이터 처리, 데이터베이스 연동 및 풀스택 개발 기초 학습.',
   },
   {
+    section: 'career',
     type: 'Administration',
     title: '관리팀 사원',
     org: '(주)화성',
@@ -238,6 +245,7 @@ export const careerItems = [
     body: 'MES 제조실행시스템 운영 및 데이터 관리 담당.',
   },
   {
+    section: 'academic',
     type: 'Academic',
     title: '컴퓨터정보전자과 디지털전자전공',
     org: '구미대학교',
