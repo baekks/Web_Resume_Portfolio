@@ -33,6 +33,7 @@ export default function Projects() {
         <div className="v2-modal-head">
           <span>{selectedProject.detail.type}</span>
           <h3 id="project-modal-title">{selectedProject.title}</h3>
+          {selectedProject.period ? <strong>{selectedProject.period}</strong> : null}
           <p>{selectedProject.detail.overview}</p>
         </div>
         <div className="v2-modal-grid">
@@ -126,6 +127,7 @@ export default function Projects() {
                 ))}
               </div>
               <h3>{project.title}</h3>
+              {project.period ? <span className="v2-project-period">{project.period}</span> : null}
               <p>{project.summary}</p>
               {project.role ? (
                 <div className="v2-project-role">

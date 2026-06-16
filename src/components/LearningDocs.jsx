@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, BookOpenCheck } from 'lucide-react';
 
-const notionUrl = 'https://app.notion.com/p/Java-Spring-Vue-37e3bc0ba132817fb4ead54f94122da8?source=copy_link';
+const notionUrl = 'https://app.notion.com/p/DX-Academy-3813bc0ba13280ab87d1fa05c410333b?source=copy_link';
 
 export default function LearningDocs() {
   return (

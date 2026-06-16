@@ -2,9 +2,11 @@ import React, { useMemo, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { mindMapNodes } from '../data/portfolioData.js';
 
+const coreNodeLabel = 'Baek Kyung Seo';
+
 const mindMapDetails = {
-  'Baek Kyung-seo': {
-    title: 'Baek Kyung-seo',
+  [coreNodeLabel]: {
+    title: coreNodeLabel,
     body: '운영 경험, 화면 구현, 데이터 흐름을 하나의 기준으로 연결하는 풀스택 개발자 포트폴리오입니다.',
   },
   'Full-stack': {
@@ -56,7 +58,9 @@ const networkBridges = [
 
 export default function Main({ onEnter }) {
   const touchStartY = useRef(null);
-  const [activeNode, setActiveNode] = useState('Baek Kyung-seo');
+  const stageRef = useRef(null);
+  const [activeNode, setActiveNode] = useState(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 16, y: 16, visible: false });
 
   const childMap = useMemo(
     () =>
@@ -72,13 +76,13 @@ export default function Main({ onEnter }) {
   );
 
   const nodeByLabel = useMemo(
-    () => new Map([['Baek Kyung-seo', { label: 'Baek Kyung-seo', x: 50, y: 50, size: 'core' }], ...mindMapNodes.map((node) => [node.label, node])]),
+    () => new Map([[coreNodeLabel, { label: coreNodeLabel, x: 50, y: 50, size: 'core' }], ...mindMapNodes.map((node) => [node.label, node])]),
     [],
   );
 
   const networkLinks = useMemo(() => {
     const hierarchyLinks = mindMapNodes.map((node) => ({
-      from: node.parent ?? 'Baek Kyung-seo',
+      from: node.parent ?? coreNodeLabel,
       to: node.label,
       type: node.parent ? 'branch' : 'hub',
     }));
@@ -90,12 +94,16 @@ export default function Main({ onEnter }) {
   const activeDetails =
     mindMapDetails[activeNode] ??
     mindMapDetails[mindMapNodes.find((node) => node.label === activeNode)?.parent] ?? {
-      title: activeNode,
+      title: activeNode ?? coreNodeLabel,
       body: '선택한 키워드는 연결된 상위 역량 안에서 함께 사용되는 기술입니다.',
     };
 
   const isRelated = (node) => {
-    if (activeNode === 'Baek Kyung-seo') {
+    if (!activeNode) {
+      return false;
+    }
+
+    if (activeNode === coreNodeLabel) {
       return true;
     }
 
@@ -108,7 +116,11 @@ export default function Main({ onEnter }) {
   };
 
   const isLinkActive = (link) => {
-    if (activeNode === 'Baek Kyung-seo') {
+    if (!activeNode) {
+      return false;
+    }
+
+    if (activeNode === coreNodeLabel) {
       return true;
     }
 
@@ -118,9 +130,52 @@ export default function Main({ onEnter }) {
 
   const handleWheel = (event) => {
     if (event.deltaY > 12) {
-      event.preventDefault();
       onEnter();
     }
+  };
+
+  const updateTooltipPosition = (clientX, clientY) => {
+    const stage = stageRef.current;
+    if (!stage) {
+      return;
+    }
+
+    const rect = stage.getBoundingClientRect();
+    const tooltipWidth = 300;
+    const tooltipHeight = 136;
+    const maxX = Math.max(12, rect.width - tooltipWidth - 12);
+    const maxY = Math.max(12, rect.height - tooltipHeight - 12);
+    const x = Math.min(Math.max(clientX - rect.left + 18, 12), maxX);
+    const y = Math.min(Math.max(clientY - rect.top + 18, 12), maxY);
+    setTooltipPosition({ x, y, visible: true });
+  };
+
+  const showTooltipNearNode = (node) => {
+    const stage = stageRef.current;
+    if (!stage) {
+      return;
+    }
+
+    const rect = stage.getBoundingClientRect();
+    updateTooltipPosition(rect.left + (rect.width * node.x) / 100, rect.top + (rect.height * node.y) / 100);
+  };
+
+  const activateNode = (label, event) => {
+    setActiveNode(label);
+    if (typeof event?.clientX === 'number' && typeof event?.clientY === 'number') {
+      updateTooltipPosition(event.clientX, event.clientY);
+      return;
+    }
+
+    const node = nodeByLabel.get(label);
+    if (node) {
+      showTooltipNearNode(node);
+    }
+  };
+
+  const resetActiveNode = () => {
+    setActiveNode(null);
+    setTooltipPosition((current) => ({ ...current, visible: false }));
   };
 
   const handleTouchStart = (event) => {
@@ -174,52 +229,78 @@ export default function Main({ onEnter }) {
         </div>
       </div>
 
-      <div className="v3-mindmap-stage" aria-label="백경서 네트워크 연결망">
-        <svg className="v3-mindmap-lines" viewBox="0 0 100 100" aria-hidden="true">
-          {networkLinks.map((link) => {
-            const from = nodeByLabel.get(link.from);
-            const to = nodeByLabel.get(link.to);
-            const isActiveLine = isLinkActive(link);
-            if (!from || !to) {
-              return null;
-            }
+      <div
+        className="v3-mindmap-stage"
+        aria-label="백경서 네트워크 연결망"
+        ref={stageRef}
+        onPointerMove={(event) => {
+          if (tooltipPosition.visible) {
+            updateTooltipPosition(event.clientX, event.clientY);
+          }
+        }}
+        onPointerLeave={() => {
+          resetActiveNode();
+        }}
+        onMouseLeave={resetActiveNode}
+      >
+        <div className="v3-mindmap-graph">
+          <svg className="v3-mindmap-lines" viewBox="0 0 100 100" aria-hidden="true">
+            {networkLinks.map((link) => {
+              const from = nodeByLabel.get(link.from);
+              const to = nodeByLabel.get(link.to);
+              const lineState = activeNode ? (isLinkActive(link) ? 'is-active' : 'is-muted') : '';
+              if (!from || !to) {
+                return null;
+              }
 
-            return (
-              <line
-                className={`is-${link.type}-line ${isActiveLine ? 'is-active' : 'is-muted'}`}
-                key={`${link.from}-${link.to}`}
-                x1={from.x}
-                y1={from.y}
-                x2={to.x}
-                y2={to.y}
-              />
-            );
-          })}
-        </svg>
-        <button
-          type="button"
-          className={`v3-mindmap-core ${activeNode === 'Baek Kyung-seo' ? 'is-active' : ''}`}
-          onClick={() => setActiveNode('Baek Kyung-seo')}
-          onFocus={() => setActiveNode('Baek Kyung-seo')}
-          onMouseEnter={() => setActiveNode('Baek Kyung-seo')}
-        >
-          <span>Baek Kyung-seo</span>
-        </button>
-        {mindMapNodes.map((node) => (
+              return (
+                <line
+                  className={`is-${link.type}-line ${lineState}`}
+                  key={`${link.from}-${link.to}`}
+                  x1={from.x}
+                  y1={from.y}
+                  x2={to.x}
+                  y2={to.y}
+                />
+              );
+            })}
+          </svg>
           <button
             type="button"
-            className={`v3-mindmap-node is-${node.size} ${activeNode === node.label ? 'is-active' : ''} ${isRelated(node) ? 'is-related' : 'is-muted'}`}
-            key={node.label}
-            style={{ '--x': `${node.x}%`, '--y': `${node.y}%` }}
-            onClick={() => setActiveNode(node.label)}
-            onFocus={() => setActiveNode(node.label)}
-            onMouseEnter={() => setActiveNode(node.label)}
-            aria-pressed={activeNode === node.label}
+            className={`v3-mindmap-core ${activeNode === coreNodeLabel ? 'is-active' : ''}`}
+            onClick={(event) => activateNode(coreNodeLabel, event)}
+            onFocus={() => activateNode(coreNodeLabel)}
+            onMouseEnter={(event) => activateNode(coreNodeLabel, event)}
+            onPointerEnter={(event) => activateNode(coreNodeLabel, event)}
+            onPointerMove={(event) => activateNode(coreNodeLabel, event)}
           >
-            <span>{node.label}</span>
+            <span>{coreNodeLabel}</span>
           </button>
-        ))}
-        <aside className="v3-mindmap-inspector" aria-live="polite">
+          {mindMapNodes.map((node) => (
+            <button
+              type="button"
+              className={`v3-mindmap-node is-${node.size} ${activeNode === node.label ? 'is-active' : ''} ${activeNode ? (isRelated(node) ? 'is-related' : 'is-muted') : ''}`}
+              key={node.label}
+              style={{ '--x': `${node.x}%`, '--y': `${node.y}%` }}
+              onClick={(event) => activateNode(node.label, event)}
+              onFocus={() => activateNode(node.label)}
+              onMouseEnter={(event) => activateNode(node.label, event)}
+              onPointerEnter={(event) => activateNode(node.label, event)}
+              onPointerMove={(event) => activateNode(node.label, event)}
+              aria-pressed={activeNode === node.label}
+            >
+              <span>{node.label}</span>
+            </button>
+          ))}
+        </div>
+        <aside
+          className={`v3-mindmap-inspector ${tooltipPosition.visible ? 'is-visible' : ''}`}
+          aria-live="polite"
+          style={{
+            '--tooltip-x': `${tooltipPosition.x}px`,
+            '--tooltip-y': `${tooltipPosition.y}px`,
+          }}
+        >
           <p>{activeDetails.title}</p>
           <strong>{childMap[activeNode]?.length ? `연결 노드 ${childMap[activeNode].length}개` : '연결 기술'}</strong>
           <span>{activeDetails.body}</span>

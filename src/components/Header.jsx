@@ -22,7 +22,7 @@ export default function Header({ entered }) {
   return (
     <header className={`v2-header ${isMenuOpen ? 'is-menu-open' : ''}`}>
       <a href="/" className="v2-brand" onClick={handleNavClick}>
-        <span className="v2-brand-desktop">BKS.dev</span>
+        <span className="v2-brand-desktop">Beak's Dev</span>
         <span className="v2-brand-mobile">Main</span>
       </a>
       {entered ? (

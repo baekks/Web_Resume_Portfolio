@@ -1,11 +1,11 @@
 import React from 'react';
-import { CircuitBoard, Download, Github, Mail, NotebookTabs } from 'lucide-react';
+import { CircuitBoard, Download, Github, Mail, NotebookPen } from 'lucide-react';
 
-const notionUrl = 'https://app.notion.com/p/Java-Spring-Vue-37e3bc0ba132817fb4ead54f94122da8?source=copy_link';
+const blogUrl = '';
 const resumeUrl = '/assets/baek-kyung-seo-resume.hwp';
 
 export default function Contact() {
-  const hasNotionUrl = Boolean(notionUrl);
+  const hasBlogUrl = Boolean(blogUrl);
   const hasResumeUrl = Boolean(resumeUrl);
 
   return (
@@ -22,15 +22,15 @@ export default function Contact() {
           GitHub
         </a>
         <a
-          className={!hasNotionUrl ? 'is-disabled' : undefined}
-          href={hasNotionUrl ? notionUrl : '#v2-contact'}
-          target={hasNotionUrl ? '_blank' : undefined}
-          rel={hasNotionUrl ? 'noreferrer' : undefined}
-          aria-disabled={!hasNotionUrl ? true : undefined}
-          onClick={!hasNotionUrl ? (event) => event.preventDefault() : undefined}
+          className={!hasBlogUrl ? 'is-disabled' : undefined}
+          href={hasBlogUrl ? blogUrl : '#v2-contact'}
+          target={hasBlogUrl ? '_blank' : undefined}
+          rel={hasBlogUrl ? 'noreferrer' : undefined}
+          aria-disabled={!hasBlogUrl ? true : undefined}
+          onClick={!hasBlogUrl ? (event) => event.preventDefault() : undefined}
         >
-          <NotebookTabs size={18} />
-          Notion
+          <NotebookPen size={18} />
+          Blog
         </a>
         <a href="mailto:baekks93@gmail.com">
           <Mail size={18} />
