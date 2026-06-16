@@ -16,6 +16,7 @@ const careerGroups = [
     key: 'career',
     label: 'Career',
     title: '경력사항',
+    summary: '총 1년 9개월',
   },
 ];
 
@@ -35,6 +36,7 @@ export default function Career() {
               <div className="v2-career-group-head">
                 <span>{group.label}</span>
                 <h3 id={`career-${group.key}`}>{group.title}</h3>
+                {group.summary ? <p className="v2-career-total">{group.summary}</p> : null}
               </div>
               <div className="v2-career-list">
                 {items.map(({ type, title, org, url, period, body }) => (

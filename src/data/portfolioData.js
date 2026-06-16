@@ -182,7 +182,7 @@ export const skillGroups = [
     title: 'Languages',
     groups: [
       { label: '주요 사용', values: ['Java', 'JavaScript', 'HTML5', 'CSS3'] },
-      { label: '사용 경험', values: ['Python', 'C', 'R', 'SQL', 'Shell Script'] },
+      { label: '사용 경험', values: ['SQL', 'Shell Script', 'Python', 'C', 'R'] },
     ],
   },
   {
@@ -191,23 +191,23 @@ export const skillGroups = [
     groups: [
       { label: '라이브러리·프레임워크', values: ['React.js', 'Vue.js', 'Redux', 'Pinia'] },
       { label: '빌드·통신', values: ['Vite', 'Axios', 'Fetch API'] },
-      { label: '스타일링', values: ['CSS Modules', 'Responsive Layout', 'UI/UX Design'] },
+      { label: '스타일링', values: ['Responsive Layout', 'UI/UX Design', 'CSS Modules'] },
     ],
   },
   {
     icon: ServerCog,
     title: 'Backend',
     groups: [
-      { label: '프레임워크', values: ['Spring Boot', 'Spring MVC', 'Thymeleaf', 'JSP', 'Web Servlet'] },
+      { label: '프레임워크', values: ['Spring Boot', 'Spring MVC', 'JSP', 'Web Servlet', 'Thymeleaf'] },
       { label: '데이터 접근', values: ['JPA', 'MyBatis', 'JDBC'] },
-      { label: '보안·검증', values: ['Spring Security', 'Validation', 'REST API'] },
+      { label: '보안·검증', values: ['REST API', 'Spring Security', 'Validation'] },
     ],
   },
   {
     icon: Database,
     title: 'Database & Infra',
     groups: [
-      { label: 'Database', values: ['PostgreSQL', 'Oracle DB', 'MySQL'] },
+      { label: 'Database', values: ['Oracle DB', 'PostgreSQL', 'MySQL'] },
       { label: 'Server', values: ['Linux', 'CentOS', 'Apache', 'Tomcat'] },
       { label: 'Infra', values: ['Docker', 'AWS', 'Raspberry Pi', 'MQTT'] },
     ],

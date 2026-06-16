@@ -1097,12 +1097,22 @@
   color: var(--v2-point);
 }
 
-.v2-node strong,
+.v2-node strong {
+  display: block;
+  margin: 10px 0;
+  color: var(--v2-point);
+  font-size: 1.35rem;
+}
+
 .v2-hex-card h3 {
   display: block;
   margin-top: 16px;
   color: var(--v2-point);
   font-size: 1.35rem;
+}
+
+.v2-skill-title {
+  margin: 10px 0;
 }
 
 .v2-skill-node {
@@ -1155,6 +1165,13 @@
   font-weight: 800;
 }
 
+.v2-skill-cluster em.is-muted {
+  border-color: rgba(226, 232, 240, 0.14);
+  background: rgba(22, 30, 52, 0.24);
+  color: rgba(226, 232, 240, 0.46);
+  opacity: 0.62;
+}
+
 .v2-timeline {
   grid-column: 1 / -1;
   display: grid;
@@ -1189,6 +1206,14 @@
   margin: 0;
   color: #C8D0DA;
   font-size: clamp(1.35rem, 2.2vw, 2rem);
+}
+
+.v2-career-total {
+  margin: 10px 0 0;
+  color: var(--v2-text-readable);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.5;
 }
 
 .v2-career-list {
