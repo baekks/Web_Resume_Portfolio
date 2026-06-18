@@ -237,7 +237,7 @@ export const careerItems = [
     title: '스마트 모빌리티 DX Academy',
     org: 'MBC 아카데미 컴퓨터 교육센터',
     period: '2025.12 - Present',
-    body: '웹설계 기초, AI 프로그래밍, React, Vue, UI/UX 설계 및 제작 학습 중.',
+    body: '웹설계 기초, AI 프로그래밍, Vue, UI/UX 설계 및 제작 학습 중.',
   },
   {
     section: 'academic',

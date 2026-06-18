@@ -2,7 +2,7 @@ import React from 'react';
 import { CircuitBoard, Download, Github, Mail, NotebookPen } from 'lucide-react';
 
 const blogUrl = 'https://velog.io/@siyeoniiii/posts';
-const resumeUrl = '/assets/baek-kyung-seo-resume.hwp';
+const resumeUrl = '/assets/Baek_Kyung_Seo_Resume.docx';
 
 export default function Contact() {
   const hasBlogUrl = Boolean(blogUrl);
