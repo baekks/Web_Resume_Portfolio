@@ -37,7 +37,7 @@ export default function Projects() {
           <p>{selectedProject.detail.overview}</p>
         </div>
         <div className="v2-modal-grid">
-          <div className="v2-modal-section">
+          <div className="v2-modal-section v2-modal-stack-section">
             <h4>담당 역할</h4>
             <ul>
               {selectedProject.detail.roles.map((item) => (

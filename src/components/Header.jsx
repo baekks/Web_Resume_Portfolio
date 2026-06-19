@@ -3,12 +3,12 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'About', href: '#v2-top' },
-  { label: 'Skills', href: '#v2-skills' },
+  { label: 'Tech Stack', href: '#v2-skills' },
   { label: 'Strengths', href: '#v2-strengths' },
   { label: 'Workflow', href: '#v2-architecture' },
   { label: 'Career', href: '#v2-career' },
   { label: 'Projects', href: '#v2-projects' },
-  { label: 'Docs', href: '#v2-docs' },
+  { label: 'Learning', href: '#v2-docs' },
   { label: 'Contact', href: '#v2-contact' },
 ];
 

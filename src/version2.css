@@ -1681,9 +1681,16 @@
   overflow-wrap: anywhere;
 }
 
+.v2-modal-stack-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .v2-modal-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
 }
 

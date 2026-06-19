@@ -32,8 +32,8 @@ export default function CoreStrengths() {
   return (
     <section className="v2-panel v2-strengths-panel" id="v2-strengths">
       <div className="v2-section-heading">
-        <p className="v2-label">Strengths</p>
-        <h2>Core Strengths</h2>
+        <p className="v2-label">강점</p>
+        <h2>핵심 강점</h2>
       </div>
       <div className="v2-strength-grid">
         {strengths.map(({ icon: Icon, title, stack, body }) => (
