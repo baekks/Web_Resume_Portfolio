@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baek Kyung Seo | HTML Portfolio</title>
+    <link rel="stylesheet" href="/versions/vue/version2.css" />
+  </head>
+  <body>
+    <main class="v2-shell v3-shell is-rendered">
+      <header class="v2-header">
+        <a href="/" class="v2-brand">
+          <span class="v2-brand-desktop">Beak's Dev</span>
+          <span class="v2-brand-mobile">Main</span>
+        </a>
+        <nav id="v2-section-nav" aria-label="HTML version sections">
+          <a href="#v2-top">About</a>
+          <a href="#v2-skills">Tech Stack</a>
+          <a href="#v2-strengths">Strengths</a>
+          <a href="#v2-architecture">Workflow</a>
+          <a href="#v2-career">Career</a>
+          <a href="#v2-projects">Projects</a>
+          <a href="#v2-docs">Learning</a>
+          <a href="#v2-contact">Contact</a>
+        </nav>
+      </header>
+
+      <div class="v2-content">
+        <section class="v2-hero" id="v2-top">
+          <div>
+            <div class="v2-kicker">
+              <span aria-hidden="true">HTML</span>
+              Portfolio
+            </div>
+            <p class="v2-hero-name">Baek Kyung-seo / Full-stack Developer</p>
+            <h1>
+              흩어진 경험을
+              <span> 하나의 시스템으로</span>
+              조립하는 개발자.
+            </h1>
+            <p>서버 운영과 유지보수 경험을 바탕으로 사용자 불편을 코드와 화면 구조로 개선하는 개발자입니다.</p>
+          </div>
+          <aside class="v2-hero-portrait" aria-label="Baek Kyung-seo profile image">
+            <img src="/assets/profile-photo.jpeg" alt="백경서 프로필 사진" />
+          </aside>
+        </section>
+
+        <section class="v2-panel v2-skills-panel" id="v2-skills">
+          <div class="v2-section-heading">
+            <p class="v2-label">Skills</p>
+            <h2>기술 스택</h2>
+          </div>
+          <div class="v2-node-grid v2-skills-grid">
+            <article class="v2-node v2-skill-node">
+              <span class="v2-vue-icon" aria-hidden="true">&lt;/&gt;</span>
+              <strong class="v2-skill-title">Languages</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster"><span>주요 사용</span><div><em>Java</em><em>JavaScript</em><em>HTML5</em><em>CSS3</em></div></div>
+                <div class="v2-skill-cluster"><span>사용 경험</span><div><em>SQL</em><em>Shell Script</em><em class="is-muted">Python</em><em class="is-muted">C</em><em class="is-muted">R</em></div></div>
+              </div>
+            </article>
+            <article class="v2-node v2-skill-node">
+              <span class="v2-vue-icon" aria-hidden="true">▣</span>
+              <strong class="v2-skill-title">Frontend</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster"><span>라이브러리·프레임워크</span><div><em>React.js</em><em>Vue.js</em><em class="is-muted">Redux</em><em class="is-muted">Pinia</em></div></div>
+                <div class="v2-skill-cluster"><span>빌드·통신</span><div><em>Vite</em><em>Axios</em><em>Fetch API</em></div></div>
+                <div class="v2-skill-cluster"><span>스타일링</span><div><em>Responsive Layout</em><em>UI/UX Design</em><em>CSS Modules</em></div></div>
+              </div>
+            </article>
+            <article class="v2-node v2-skill-node">
+              <span class="v2-vue-icon" aria-hidden="true">⚙</span>
+              <strong class="v2-skill-title">Backend</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster"><span>프레임워크</span><div><em>Spring Boot</em><em>Spring MVC</em><em>JSP</em><em>Web Servlet</em><em>Thymeleaf</em></div></div>
+                <div class="v2-skill-cluster"><span>데이터 접근</span><div><em>JPA</em><em>MyBatis</em><em>JDBC</em></div></div>
+                <div class="v2-skill-cluster"><span>보안·검증</span><div><em>REST API</em><em>Spring Security</em><em>Validation</em></div></div>
+              </div>
+            </article>
+            <article class="v2-node v2-skill-node">
+              <span class="v2-vue-icon" aria-hidden="true">◎</span>
+              <strong class="v2-skill-title">Database & Infra</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster"><span>Database</span><div><em>Oracle DB</em><em>PostgreSQL</em><em>MySQL</em></div></div>
+                <div class="v2-skill-cluster"><span>Server</span><div><em>Linux</em><em>CentOS</em><em>Apache</em><em>Tomcat</em></div></div>
+                <div class="v2-skill-cluster"><span>Infra</span><div><em>Docker</em><em class="is-muted">AWS</em><em class="is-muted">Raspberry Pi</em><em class="is-muted">MQTT</em></div></div>
+              </div>
+            </article>
+            <article class="v2-node v2-skill-node">
+              <span class="v2-vue-icon" aria-hidden="true">⌘</span>
+              <strong class="v2-skill-title">Tools & Workflow</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster"><span>개발 도구</span><div><em>VS Code</em><em>IntelliJ IDEA</em><em>Eclipse</em><em class="is-muted">Antigravity IDE</em></div></div>
+                <div class="v2-skill-cluster"><span>협업·버전관리</span><div><em>Git</em><em>GitHub</em><em>SVN</em><em>Notion</em></div></div>
+                <div class="v2-skill-cluster"><span>테스트·API</span><div><em>Postman</em><em>Maven</em><em>Gradle</em></div></div>
+              </div>
+            </article>
+            <article class="v2-node v2-skill-node">
+              <span class="v2-vue-icon" aria-hidden="true">✦</span>
+              <strong class="v2-skill-title">Learning & Expanding</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster"><span>AI·데이터</span><div><em class="is-muted">FastAPI</em><em class="is-muted">PyTorch</em><em class="is-muted">OpenCV</em><em class="is-muted">YOLO</em><em class="is-muted">OCR</em></div></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-strengths-panel" id="v2-strengths">
+          <div class="v2-section-heading">
+            <p class="v2-label">강점</p>
+            <h2>핵심 강점</h2>
+          </div>
+          <div class="v2-strength-grid">
+            <article class="v2-strength-card"><span class="v2-strength-icon">⚙</span><div><h3>Backend Foundation</h3><strong>Java · Spring Boot · JPA · REST API</strong><p>서버 로직, 데이터 흐름, API 구조를 중심으로 기능을 구현합니다.</p></div></article>
+            <article class="v2-strength-card"><span class="v2-strength-icon">▣</span><div><h3>Frontend Implementation</h3><strong>React · Vue · Responsive UI</strong><p>컴포넌트 기반 화면과 사용자 흐름을 고려한 UI를 구성합니다.</p></div></article>
+            <article class="v2-strength-card"><span class="v2-strength-icon">&lt;/&gt;</span><div><h3>Operations Experience</h3><strong>Linux · CentOS · Monitoring · Maintenance</strong><p>웹 서버 운영, 장애 확인, 유지보수 경험을 바탕으로 안정성을 고려합니다.</p></div></article>
+            <article class="v2-strength-card"><span class="v2-strength-icon">⑂</span><div><h3>Collaboration</h3><strong>GitHub · Notion · Postman · Documentation</strong><p>작업 내용과 API 흐름을 문서화하고 협업 도구를 활용합니다.</p></div></article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-architecture-panel" id="v2-architecture">
+          <div class="v2-section-heading">
+            <p class="v2-label">Architecture / Workflow</p>
+            <h2>구조를 보고 흐름을 정리합니다.</h2>
+          </div>
+          <div class="v2-architecture-grid">
+            <article class="v2-architecture-card"><span class="v2-architecture-icon">▤</span><div><h3>Client UI</h3><p>React, Vue 기반 컴포넌트 화면과 사용자 흐름을 먼저 정리합니다.</p></div></article>
+            <article class="v2-architecture-card"><span class="v2-architecture-icon">⚙</span><div><h3>Server Logic</h3><p>Spring Boot API, 검증 로직, 비즈니스 흐름을 기준으로 기능을 구현합니다.</p></div></article>
+            <article class="v2-architecture-card"><span class="v2-architecture-icon">◎</span><div><h3>Data Flow</h3><p>JPA, MyBatis, Oracle DB, PostgreSQL을 활용해 데이터 흐름을 연결합니다.</p></div></article>
+            <article class="v2-architecture-card"><span class="v2-architecture-icon">▣</span><div><h3>Operation</h3><p>Linux 서버 운영 경험을 바탕으로 배포, 확인, 유지보수 관점을 함께 봅니다.</p></div></article>
+          </div>
+          <div class="v2-workflow-list">
+            <article class="v2-workflow-item"><span>01</span><span class="v2-workflow-glyph">{}</span><div><h3>기능 구조화</h3><p>요구사항을 화면, API, 데이터 단위로 나눠 구현 범위를 정리합니다.</p></div></article>
+            <article class="v2-workflow-item"><span>02</span><span class="v2-workflow-glyph">⑂</span><div><h3>구현과 협업</h3><p>GitHub, Notion, Postman을 활용해 작업 내용과 API 흐름을 공유합니다.</p></div></article>
+            <article class="v2-workflow-item"><span>03</span><span class="v2-workflow-glyph">↺</span><div><h3>검증과 정리</h3><p>빌드, 화면 확인, 문서화를 통해 결과물을 다시 확인합니다.</p></div></article>
+          </div>
+        </section>
+
+        <section class="v2-panel" id="v2-career">
+          <div class="v2-section-heading">
+            <p class="v2-label">Career</p>
+            <h2>학력 · 교육 · 경력</h2>
+          </div>
+          <div class="v2-timeline">
+            <section class="v2-career-group">
+              <div class="v2-career-group-head"><span>Academic</span><h3>학력사항</h3></div>
+              <div class="v2-career-list">
+                <article><time>2024.03 - Present</time><div><span>Academic</span><h4>컴퓨터공학과</h4><strong>방송통신대학교</strong><p>컴퓨터공학 전공 지식 습득 및 실무 학습 중.</p></div></article>
+                <article><time>2012.03 - 2014.02</time><div><span>Academic</span><h4>컴퓨터정보전자과 디지털전자전공</h4><strong>구미대학교</strong><p>컴퓨터정보전자 및 디지털전자 전공 과정 이수.</p></div></article>
+              </div>
+            </section>
+            <section class="v2-career-group">
+              <div class="v2-career-group-head"><span>Education</span><h3>교육사항</h3></div>
+              <div class="v2-career-list">
+                <article><time>2025.12 - Present</time><div><span>Education</span><h4>스마트 모빌리티 DX Academy</h4><strong>MBC 아카데미 컴퓨터 교육센터</strong><p>웹설계 기초, AI 프로그래밍, Vue, UI/UX 설계 및 제작 학습 중.</p></div></article>
+                <article><time>2022.06 - 2023.02</time><div><span>Training</span><h4>Java 웹 앱 개발 통합 과정</h4><strong>코리아 IT 아카데미</strong><p>Java, Spring Boot, JPA, React.js 등 풀스택 개발 역량 강화.</p></div></article>
+                <article><time>2021.06 - 2021.11</time><div><span>Training</span><h4>자바 빅데이터 풀스택 과정</h4><strong>인천직업능력교육원</strong><p>Java 기반 웹 개발, 빅데이터 처리, 데이터베이스 연동 및 풀스택 개발 기초 학습.</p></div></article>
+              </div>
+            </section>
+            <section class="v2-career-group">
+              <div class="v2-career-group-head"><span>Career</span><h3>경력사항</h3><p class="v2-career-total">총 1년 9개월</p></div>
+              <div class="v2-career-list">
+                <article><time>2023.10 - 2024.10</time><div><span>Tech Support</span><h4>기술지원 사원</h4><a class="v2-career-link" href="https://www.jeyun.com/" target="_blank" rel="noreferrer">(주)제윤</a><p>Linux/CentOS 환경 웹 서버 배포 및 모니터링, 장애 원인 분석과 복구 대응.</p></div></article>
+                <article><time>2022.01 - 2022.04</time><div><span>Internship</span><h4>웹개발 인턴</h4><a class="v2-career-link" href="https://www.wemeets.co.kr/" target="_blank" rel="noreferrer">주식회사 위미츠</a><p>Java/Spring 기반 백엔드 API 개발 및 데이터베이스 연동 실무 경험.</p></div></article>
+                <article><time>2020.12 - 2021.06</time><div><span>Administration</span><h4>관리팀 사원</h4><strong>(주)화성</strong><p>MES 제조실행시스템 운영 및 데이터 관리 담당.</p></div></article>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-projects-panel" id="v2-projects">
+          <div class="v2-section-heading">
+            <p class="v2-label">Projects</p>
+            <h2>Project Portfolio</h2>
+          </div>
+          <div class="v2-project-filter" aria-label="프로젝트 분류">
+            <button type="button" class="is-active">전체</button>
+            <button type="button">개인</button>
+            <button type="button">팀</button>
+            <button type="button">실무</button>
+          </div>
+          <div class="v2-project-grid">
+            <article class="v2-project-card"><img src="/assets/web-resume-version3.png" alt="Web Resume Portfolio 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>React</span><span>Vite</span><span>Portfolio</span></div><h3>Web Resume Portfolio</h3><p>React 기반으로 제작한 웹 이력서 포트폴리오입니다. 마인드맵 메인, 프로젝트 필터, 경력/기술 스택 구성을 포함한 인터랙티브 이력서입니다.</p><div class="v2-project-role"><span>Role</span><strong>React 포트폴리오 UI, 네트워크 메인, Contact/Resume 연결</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/Web_Resume_Portfolio" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/logmile-project.png" alt="LogMile 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Vue</span><span>Vite</span><span>Team Project</span></div><h3>LogMile</h3><p>스마트 모빌리티 DX Academy 1차 본 프로젝트로, 직접 기획한 주제가 선정되어 제작한 화물차 운수업 피로도 모니터링 시뮬레이션 웹 서비스입니다.</p><div class="v2-project-role"><span>Role</span><strong>프로젝트 기획, 산출물 정리, 프론트엔드 및 시뮬레이션 화면 구현</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/logmile" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/readme-project.png" alt="ReadMe 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Vue</span><span>Book Store</span><span>Team Project</span></div><h3>ReadMe</h3><p>스마트 모빌리티 DX Academy 미니 2차 프로젝트로, 도서 탐색부터 장바구니, 주문, 결제, 배송 흐름까지 목표로 한 도서 쇼핑몰 웹 서비스입니다.</p><div class="v2-project-role"><span>Role</span><strong>상품, 주문, 결제, 배송 흐름 화면 구현</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/lasr3423.github.io" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/luxe-shop-project.png" alt="LUXE SHOP 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Vue</span><span>Vite</span><span>Frontend</span></div><h3>LUXE SHOP</h3><p>스마트 모빌리티 DX Academy 미니 2차 개인 프로젝트입니다. Vite 기반 프론트엔드와 JSON 상품 데이터를 활용해 쇼핑몰 화면을 구현했습니다.</p><div class="v2-project-role"><span>Role</span><strong>Vue/Vite 쇼핑몰 화면 구현, JSON 상품 데이터 활용</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/baekks.github.io" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/jeju-culture-tourism.png" alt="Jeju Culture & Tourism 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Thymeleaf</span></div><h3>Jeju Culture & Tourism</h3><p>제주 문화관광 정보를 소개하는 웹 프로젝트입니다. 초기 프론트 구현 후 백엔드 연동에 맞춰 Thymeleaf 화면으로 전환했습니다.</p><div class="v2-project-role"><span>Role</span><strong>메인 화면, 커뮤니티, 회원가입, 로그인 화면 구현 및 Thymeleaf 전환</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/hwandroid921.github.io" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/gyeongju-tour-project.png" alt="Gyeongju Culture Tour 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div><h3>Gyeongju Culture Tour</h3><p>스마트 모빌리티 DX Academy 미니 1차 개인 프로젝트입니다. HTML/CSS/JavaScript만으로 경주 문화관광 소개형 정적 웹사이트를 구성했습니다.</p><div class="v2-project-role"><span>Role</span><strong>정적 웹사이트 구조 설계, 관광 콘텐츠 화면 구현</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/baekks.github.io" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/jeyun-homepage.png" alt="Assembly Maintenance 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Linux</span><span>CentOS</span><span>Shell Script</span></div><h3>Assembly Maintenance</h3><p>의회 홈페이지의 서버 유지보수와 장애 처리를 담당하며 웹 서버 배포 및 운영 모니터링을 수행한 실무 경험입니다.</p><div class="v2-project-role"><span>Role</span><strong>Linux 서버 유지보수, 배포 확인, 장애 대응</strong></div><div class="v2-project-actions"><a href="https://www.jeyun.com/" target="_blank" rel="noreferrer">Company Site <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/projecta-team.png" alt="ProjectA 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Java</span><span>Spring Boot</span><span>JPA</span><span>Public API</span></div><h3>ProjectA (Team)</h3><p>한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 공공데이터 API 기반 관광지 분류와 메인 화면 설계를 담당했습니다.</p><div class="v2-project-role"><span>Role</span><strong>팀장, 공공데이터 API 연동, 관광지 분류, 메인 화면 설계</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/Team-ProjectA" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/wemeets-homepage.png" alt="Messenger Solution 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Java</span><span>Spring</span><span>Oracle DB</span></div><h3>Messenger Solution</h3><p>전자회의 솔루션 및 기업용 메신저의 웹 버전 서버 개발에 참여하며 백엔드 API와 데이터베이스 연동을 담당했습니다.</p><div class="v2-project-role"><span>Role</span><strong>Spring 기반 백엔드 API 개발, Oracle DB 연동</strong></div><div class="v2-project-actions"><a href="https://www.wemeets.co.kr/" target="_blank" rel="noreferrer">Company Site <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/web-homepage-project.png" alt="Web_Homepage 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>HTML5</span><span>CSS3</span><span>JS</span></div><h3>Web_Homepage</h3><p>시맨틱 태그와 반응형 레이아웃을 구현한 개인 웹사이트 프로젝트입니다.</p><div class="v2-project-role"><span>Role</span><strong>시맨틱 마크업, 반응형 레이아웃, 정적 페이지 구현</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/Web_Homepage" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+            <article class="v2-project-card"><img src="/assets/shop-portfolio-project.png" alt="Shop_Portfolio 미리보기" /><div class="v2-project-body"><div class="v2-project-tags"><span>Java</span><span>Web Servlet</span><span>CSS3</span></div><h3>Shop_Portfolio</h3><p>Java Web Servlet을 기반으로 상품 목록과 화면 흐름을 구현한 쇼핑몰 포트폴리오입니다.</p><div class="v2-project-role"><span>Role</span><strong>Servlet 기반 화면 처리, 상품 데이터 흐름 구성, 쇼핑몰 UI 구현</strong></div><div class="v2-project-actions"><a href="https://github.com/baekks/Shop_Portfolio" target="_blank" rel="noreferrer">GitHub Repo <span>↗</span></a></div></div></article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-docs-panel" id="v2-docs">
+          <div class="v2-section-heading">
+            <p class="v2-label">Learning & Docs</p>
+            <h2>학습 기록</h2>
+          </div>
+          <div class="v2-docs-card">
+            <span class="v2-docs-icon">▣</span>
+            <div>
+              <h3>Java / Spring / Vue 학습 정리</h3>
+              <p>개념 정리, 실습 기록, 프로젝트 학습 내용을 Notion에 정리하고 있습니다.</p>
+            </div>
+            <a href="https://app.notion.com/p/DX-Academy-3813bc0ba13280ab87d1fa05c410333b?source=copy_link" target="_blank" rel="noreferrer">Open Notion <span>→</span></a>
+          </div>
+        </section>
+
+        <section class="v2-contact" id="v2-contact">
+          <span class="v2-contact-glyph">▧</span>
+          <div class="v2-contact-copy">
+            <p class="v2-label">Contact</p>
+            <h2>함께 일할 기회를 기다립니다.</h2>
+            <p>프로젝트와 협업 제안, 학습 기록과 이력서는 아래 링크에서 확인할 수 있습니다.</p>
+          </div>
+          <div class="v2-contact-links">
+            <a href="https://github.com/baekks" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://velog.io/@siyeoniiii/posts" target="_blank" rel="noreferrer">Blog</a>
+            <a href="mailto:baekks93@gmail.com">Email</a>
+            <a href="/assets/Baek_Kyung_Seo_Resume.docx" download>Resume</a>
+          </div>
+        </section>
+      </div>
+
+      <footer class="v2-footer">Baek Kyung Seo</footer>
+    </main>
+  </body>
+</html>

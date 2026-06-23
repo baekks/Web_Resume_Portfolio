@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baek Kyung Seo | Vue Portfolio</title>
+    <link rel="stylesheet" href="/versions/vue/version2.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  </head>
+  <body>
+    <div id="app">
+    <main :class="['v2-shell', 'v3-shell', entered ? 'is-rendered' : 'is-gate', launching ? 'is-launching' : '']">
+      <header :class="['v2-header', isMenuOpen ? 'is-menu-open' : '']">
+        <a href="/" class="v2-brand" @click="isMenuOpen = false">
+          <span class="v2-brand-desktop">Beak's Dev</span>
+          <span class="v2-brand-mobile">Main</span>
+        </a>
+
+        <template v-if="entered">
+          <button
+            class="v2-menu-toggle"
+            type="button"
+            :aria-label="isMenuOpen ? '메뉴 닫기' : '메뉴 열기'"
+            :aria-expanded="isMenuOpen"
+            aria-controls="v2-section-nav"
+            @click="isMenuOpen = !isMenuOpen"
+          >
+            <span aria-hidden="true">{{ isMenuOpen ? 'X' : '☰' }}</span>
+          </button>
+          <nav id="v2-section-nav" aria-label="Vue version sections">
+            <a v-for="item in navItems" :key="item.href" :href="item.href" @click="isMenuOpen = false">{{ item.label }}</a>
+          </nav>
+        </template>
+
+        <div v-else class="v2-version-links" aria-label="포트폴리오 버전 링크">
+          <a class="v2-version-link" href="/versions/html/index.html">
+            <span>Current Version 1</span>
+            <em>HTML</em>
+          </a>
+          <a class="v2-version-link" href="/versions/vue/index.html">
+            <span>Current Version 2</span>
+            <em>Vue.js</em>
+          </a>
+        </div>
+      </header>
+
+      <section
+        v-if="!entered"
+        class="v2-gate v3-mindmap-main"
+        tabindex="0"
+        aria-label="백경서를 표현하는 네트워크 포트폴리오 메인"
+        @wheel="handleGateWheel"
+        @keydown="handleGateKeydown"
+      >
+        <div class="v3-mindmap-copy">
+          <p class="v2-label">Baek Kyung-seo</p>
+          <h1>
+            Network
+            <span>portfolio</span>
+          </h1>
+          <p>운영 경험, 화면 구현, 데이터 흐름을 하나의 연결망으로 보여줍니다.</p>
+          <div class="v3-mindmap-actions">
+            <button type="button" class="primary" @click="enterPortfolio">
+              View Resume
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="v3-mindmap-stage"
+          aria-label="백경서 네트워크 연결망"
+          @pointerleave="resetActiveNode"
+          @mouseleave="resetActiveNode"
+        >
+          <div class="v3-mindmap-graph">
+            <svg class="v3-mindmap-lines" viewBox="0 0 100 100" aria-hidden="true">
+              <line
+                v-for="link in networkLinks"
+                :key="`${link.from}-${link.to}`"
+                :class="[`is-${link.type}-line`, linkClass(link)]"
+                :x1="nodeByLabel[link.from].x"
+                :y1="nodeByLabel[link.from].y"
+                :x2="nodeByLabel[link.to].x"
+                :y2="nodeByLabel[link.to].y"
+              />
+            </svg>
+
+            <button
+              type="button"
+              :class="['v3-mindmap-core', activeNode === coreNodeLabel ? 'is-active' : '']"
+              @click="activateNode(coreNodeLabel, $event)"
+              @focus="activateNode(coreNodeLabel)"
+              @mouseenter="activateNode(coreNodeLabel, $event)"
+              @pointerenter="activateNode(coreNodeLabel, $event)"
+              @pointermove="activateNode(coreNodeLabel, $event)"
+            >
+              <span>{{ coreNodeLabel }}</span>
+            </button>
+
+            <button
+              v-for="node in mindMapNodes"
+              :key="node.label"
+              type="button"
+              :class="['v3-mindmap-node', `is-${node.size}`, activeNode === node.label ? 'is-active' : '', activeNode ? (isRelated(node) ? 'is-related' : 'is-muted') : '']"
+              :style="{ '--x': `${node.x}%`, '--y': `${node.y}%` }"
+              :aria-pressed="activeNode === node.label"
+              @click="activateNode(node.label, $event)"
+              @focus="activateNode(node.label)"
+              @mouseenter="activateNode(node.label, $event)"
+              @pointerenter="activateNode(node.label, $event)"
+              @pointermove="activateNode(node.label, $event)"
+            >
+              <span>{{ node.label }}</span>
+            </button>
+          </div>
+
+          <aside
+            :class="['v3-mindmap-inspector', tooltip.visible ? 'is-visible' : '']"
+            aria-live="polite"
+            :style="{ '--tooltip-x': `${tooltip.x}px`, '--tooltip-y': `${tooltip.y}px` }"
+          >
+            <p>{{ activeDetails.title }}</p>
+            <strong>{{ childMap[activeNode]?.length ? `연결 노드 ${childMap[activeNode].length}개` : '연결 기술' }}</strong>
+            <span>{{ activeDetails.body }}</span>
+          </aside>
+        </div>
+      </section>
+
+      <div v-else class="v2-content">
+        <section class="v2-hero" id="v2-top">
+          <div>
+            <div class="v2-kicker">
+              <span aria-hidden="true">✦</span>
+              Portfolio
+            </div>
+            <p class="v2-hero-name">Baek Kyung-seo / Full-stack Developer</p>
+            <h1>
+              흩어진 경험을
+              <span> 하나의 시스템으로</span>
+              조립하는 개발자.
+            </h1>
+            <p>서버 운영과 유지보수 경험을 바탕으로 사용자 불편을 코드와 화면 구조로 개선하는 개발자입니다.</p>
+          </div>
+          <aside class="v2-hero-portrait" aria-label="Baek Kyung-seo profile image">
+            <img src="/assets/profile-photo.jpeg" alt="백경서 프로필 사진" />
+          </aside>
+        </section>
+
+        <section class="v2-panel v2-skills-panel" id="v2-skills">
+          <div class="v2-section-heading">
+            <p class="v2-label">Skills</p>
+            <h2>기술 스택</h2>
+          </div>
+          <div class="v2-node-grid v2-skills-grid">
+            <article class="v2-node v2-skill-node" v-for="group in skillGroups" :key="group.title">
+              <span class="v2-vue-icon" aria-hidden="true">{{ group.icon }}</span>
+              <strong class="v2-skill-title">{{ group.title }}</strong>
+              <div class="v2-skill-clusters">
+                <div class="v2-skill-cluster" v-for="cluster in group.groups" :key="`${group.title}-${cluster.label}`">
+                  <span>{{ cluster.label }}</span>
+                  <div>
+                    <em v-for="value in cluster.values" :key="value" :class="{ 'is-muted': mutedSkills.includes(value) }">{{ value }}</em>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-strengths-panel" id="v2-strengths">
+          <div class="v2-section-heading">
+            <p class="v2-label">강점</p>
+            <h2>핵심 강점</h2>
+          </div>
+          <div class="v2-strength-grid">
+            <article class="v2-strength-card" v-for="strength in strengths" :key="strength.title">
+              <span class="v2-strength-icon" aria-hidden="true">{{ strength.icon }}</span>
+              <div>
+                <h3>{{ strength.title }}</h3>
+                <strong>{{ strength.stack }}</strong>
+                <p>{{ strength.body }}</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-architecture-panel" id="v2-architecture">
+          <div class="v2-section-heading">
+            <p class="v2-label">Architecture / Workflow</p>
+            <h2>구조를 보고 흐름을 정리합니다.</h2>
+          </div>
+          <div class="v2-architecture-grid">
+            <article class="v2-architecture-card" v-for="item in architecture" :key="item.title">
+              <span class="v2-architecture-icon" aria-hidden="true">{{ item.icon }}</span>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.body }}</p>
+              </div>
+            </article>
+          </div>
+          <div class="v2-workflow-list">
+            <article class="v2-workflow-item" v-for="item in workflowItems" :key="item.title">
+              <span>{{ item.step }}</span>
+              <span class="v2-workflow-glyph" aria-hidden="true">{{ item.icon }}</span>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.body }}</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-career-panel" id="v2-career">
+          <div class="v2-section-heading">
+            <p class="v2-label">Career</p>
+            <h2>학력 · 교육 · 경력</h2>
+          </div>
+          <div class="v2-timeline">
+            <section class="v2-career-group" v-for="group in careerGroups" :key="group.key" :aria-labelledby="`career-${group.key}`">
+              <div class="v2-career-group-head">
+                <span>{{ group.label }}</span>
+                <h3 :id="`career-${group.key}`">{{ group.title }}</h3>
+                <p v-if="group.summary" class="v2-career-total">{{ group.summary }}</p>
+              </div>
+              <div class="v2-career-list">
+                <article v-for="item in careerItems.filter((entry) => entry.section === group.key)" :key="`${item.title}-${item.period}`">
+                  <time>{{ item.period }}</time>
+                  <div>
+                    <span>{{ item.type }}</span>
+                    <h4>{{ item.title }}</h4>
+                    <a v-if="item.url" class="v2-career-link" :href="item.url" target="_blank" rel="noreferrer">{{ item.org }}</a>
+                    <strong v-else>{{ item.org }}</strong>
+                    <p>{{ item.body }}</p>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-projects-panel" id="v2-projects">
+          <div class="v2-section-heading">
+            <p class="v2-label">Projects</p>
+            <h2>Project Portfolio</h2>
+          </div>
+          <div class="v2-project-filter" aria-label="프로젝트 분류">
+            <button v-for="filter in projectFilters" :key="filter.value" type="button" :class="{ 'is-active': activeFilter === filter.value }" @click="activeFilter = filter.value">
+              {{ filter.label }}
+            </button>
+          </div>
+          <div class="v2-project-grid">
+            <article class="v2-project-card" v-for="project in filteredProjects" :key="project.title">
+              <img :src="project.image" :alt="`${project.title} 미리보기`" />
+              <div class="v2-project-body">
+                <div class="v2-project-tags">
+                  <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+                </div>
+                <h3>{{ project.title }}</h3>
+                <span v-if="project.period" class="v2-project-period">{{ project.period }}</span>
+                <p>{{ project.summary }}</p>
+                <div class="v2-project-role" v-if="project.role">
+                  <span>Role</span>
+                  <strong>{{ project.role }}</strong>
+                </div>
+                <div class="v2-project-actions">
+                  <button v-if="project.detail" type="button" @click="selectedProject = project">
+                    Details
+                    <span aria-hidden="true">→</span>
+                  </button>
+                  <a :href="project.url || '#v2-top'" :target="project.url ? '_blank' : undefined" :rel="project.url ? 'noreferrer' : undefined">
+                    {{ project.action }}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="v2-panel v2-docs-panel" id="v2-docs">
+          <div class="v2-section-heading">
+            <p class="v2-label">Learning & Docs</p>
+            <h2>학습 기록</h2>
+          </div>
+          <article class="v2-docs-card">
+            <span class="v2-docs-icon" aria-hidden="true">▣</span>
+            <div>
+              <h3>Java / Spring / Vue 학습 정리</h3>
+              <p>개념 정리, 실습 기록, 프로젝트 학습 내용을 Notion에 정리하고 있습니다.</p>
+            </div>
+            <a href="https://app.notion.com/p/DX-Academy-3813bc0ba13280ab87d1fa05c410333b?source=copy_link" target="_blank" rel="noreferrer">Open Notion →</a>
+          </article>
+        </section>
+
+        <section class="v2-contact" id="v2-contact">
+          <span class="v2-contact-glyph" aria-hidden="true">▧</span>
+          <div class="v2-contact-copy">
+            <p class="v2-label">Contact</p>
+            <h2>함께 일할 기회를 기다립니다.</h2>
+            <p>프로젝트와 협업 제안, 학습 기록과 이력서는 아래 링크에서 확인할 수 있습니다.</p>
+          </div>
+          <div class="v2-contact-links">
+            <a href="https://github.com/baekks" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://velog.io/@siyeoniiii/posts" target="_blank" rel="noreferrer">Blog</a>
+            <a href="mailto:baekks93@gmail.com">Email</a>
+            <a href="/assets/Baek_Kyung_Seo_Resume.docx" download>Resume</a>
+          </div>
+        </section>
+      </div>
+
+      <footer v-if="entered" class="v2-footer">Baek Kyung Seo</footer>
+
+      <div v-if="selectedProject" class="v2-modal-backdrop" role="presentation" @mousedown.self="selectedProject = null">
+        <article class="v2-project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" @mousedown.stop>
+          <button class="v2-modal-close" type="button" aria-label="프로젝트 상세 닫기" @click="selectedProject = null">×</button>
+          <div class="v2-modal-head">
+            <span>{{ selectedProject.detail.type }}</span>
+            <h3 id="project-modal-title">{{ selectedProject.title }}</h3>
+            <p>{{ selectedProject.detail.overview }}</p>
+          </div>
+          <div class="v2-modal-grid">
+            <div class="v2-modal-section">
+              <h4>담당 역할</h4>
+              <ul>
+                <li v-for="item in selectedProject.detail.roles" :key="item">{{ item }}</li>
+              </ul>
+            </div>
+            <div class="v2-modal-section">
+              <h4>주요 기능</h4>
+              <ul>
+                <li v-for="item in selectedProject.detail.features" :key="item">{{ item }}</li>
+              </ul>
+            </div>
+            <div class="v2-modal-section v2-modal-stack-section">
+              <h4>기술 스택</h4>
+              <div class="v2-modal-tags">
+                <span v-for="tag in selectedProject.tags" :key="tag">{{ tag }}</span>
+              </div>
+            </div>
+            <div class="v2-modal-section">
+              <h4>배운 점</h4>
+              <ul>
+                <li v-for="item in selectedProject.detail.learned" :key="item">{{ item }}</li>
+              </ul>
+            </div>
+          </div>
+          <a class="v2-modal-link" :href="selectedProject.url" target="_blank" rel="noreferrer">
+            {{ selectedProject.action }}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </article>
+      </div>
+    </main>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      const coreNodeLabel = 'Baek Kyung Seo';
+
+      createApp({
+        data() {
+          return {
+            entered: true,
+            launching: false,
+            isMenuOpen: false,
+            activeNode: null,
+            tooltip: { x: 16, y: 16, visible: false },
+            activeFilter: 'all',
+            selectedProject: null,
+            coreNodeLabel,
+            navItems: [
+              { label: 'About', href: '#v2-top' },
+              { label: 'Tech Stack', href: '#v2-skills' },
+              { label: 'Strengths', href: '#v2-strengths' },
+              { label: 'Workflow', href: '#v2-architecture' },
+              { label: 'Career', href: '#v2-career' },
+              { label: 'Projects', href: '#v2-projects' },
+              { label: 'Learning', href: '#v2-docs' },
+              { label: 'Contact', href: '#v2-contact' },
+            ],
+            mindMapDetails: {
+              [coreNodeLabel]: { title: coreNodeLabel, body: '운영 경험, 화면 구현, 데이터 흐름을 하나의 기준으로 연결하는 풀스택 개발자 포트폴리오입니다.' },
+              'Full-stack': { title: 'Full-stack', body: '프론트엔드 화면, 백엔드 API, 데이터베이스 흐름을 함께 이해하고 연결합니다.' },
+              Backend: { title: 'Backend', body: 'Java, Spring Boot, REST API, JPA/MyBatis 기반으로 서버 로직과 데이터 흐름을 구성합니다.' },
+              Frontend: { title: 'Frontend', body: 'React와 Vue 기반의 상태 UI, 반응형 레이아웃, 사용 흐름 중심 화면을 구현합니다.' },
+              Operations: { title: 'Operations', body: 'Linux/CentOS 서버 운영, 모니터링, 장애 대응 경험을 개발 과정에 녹입니다.' },
+              Workflow: { title: 'Workflow', body: 'GitHub, Postman, Notion, 문서화를 활용해 협업과 개발 흐름을 정리합니다.' },
+              Growth: { title: 'Growth', body: 'FastAPI, OpenCV, CI/CD 등 다음 단계의 기술을 학습하며 확장하고 있습니다.' },
+            },
+            mindMapNodes: [
+              { label: 'Full-stack', x: 50, y: 10, size: 'large' },
+              { label: 'Backend', x: 20, y: 31, size: 'large' },
+              { label: 'Frontend', x: 80, y: 31, size: 'large' },
+              { label: 'Operations', x: 20, y: 67, size: 'large' },
+              { label: 'Workflow', x: 77, y: 58, size: 'large' },
+              { label: 'Growth', x: 54, y: 78, size: 'medium' },
+              { label: 'Java', x: 8, y: 16, size: 'small', parent: 'Backend' },
+              { label: 'Spring Boot', x: 9, y: 40, size: 'small', parent: 'Backend' },
+              { label: 'REST API', x: 8, y: 53, size: 'small', parent: 'Backend' },
+              { label: 'JPA / MyBatis', x: 35, y: 18, size: 'small', parent: 'Backend' },
+              { label: 'Validation', x: 29, y: 48, size: 'small', parent: 'Backend' },
+              { label: 'React', x: 62, y: 18, size: 'small', parent: 'Frontend' },
+              { label: 'State UI', x: 83, y: 15, size: 'small', parent: 'Frontend' },
+              { label: 'Vue', x: 91, y: 29, size: 'small', parent: 'Frontend' },
+              { label: 'Responsive UI', x: 86, y: 47, size: 'small', parent: 'Frontend' },
+              { label: 'UX Flow', x: 69, y: 52, size: 'small', parent: 'Frontend' },
+              { label: 'Linux', x: 8, y: 60, size: 'small', parent: 'Operations' },
+              { label: 'CentOS', x: 9, y: 82, size: 'small', parent: 'Operations' },
+              { label: 'Monitoring', x: 36, y: 62, size: 'small', parent: 'Operations' },
+              { label: 'PostgreSQL', x: 32, y: 76, size: 'small', parent: 'Operations' },
+              { label: 'Maintenance', x: 18, y: 89, size: 'small', parent: 'Operations' },
+              { label: 'GitHub', x: 91, y: 52, size: 'small', parent: 'Workflow' },
+              { label: 'Postman', x: 86, y: 70, size: 'small', parent: 'Workflow' },
+              { label: 'Notion', x: 68, y: 64, size: 'small', parent: 'Workflow' },
+              { label: 'Docs', x: 78, y: 84, size: 'small', parent: 'Workflow' },
+              { label: 'CI/CD', x: 51, y: 64, size: 'small', parent: 'Growth' },
+              { label: 'FastAPI', x: 42, y: 90, size: 'small', parent: 'Growth' },
+              { label: 'OpenCV', x: 64, y: 90, size: 'small', parent: 'Growth' },
+            ],
+            networkBridges: [
+              ['Java', 'Spring Boot'], ['Spring Boot', 'REST API'], ['REST API', 'Validation'],
+              ['JPA / MyBatis', 'PostgreSQL'], ['React', 'State UI'], ['React', 'Responsive UI'],
+              ['Vue', 'UX Flow'], ['Linux', 'CentOS'], ['Linux', 'Monitoring'], ['Monitoring', 'Maintenance'],
+              ['GitHub', 'Docs'], ['GitHub', 'CI/CD'], ['Postman', 'REST API'], ['FastAPI', 'OpenCV'],
+              ['CI/CD', 'Maintenance'], ['Frontend', 'Workflow'], ['Backend', 'Operations'], ['Full-stack', 'Growth'],
+            ],
+            mutedSkills: ['Python', 'C', 'R', 'Redux', 'Pinia', 'AWS', 'Raspberry Pi', 'MQTT', 'Antigravity IDE', 'FastAPI', 'PyTorch', 'OpenCV', 'YOLO', 'OCR'],
+            skillGroups: [
+              { icon: '</>', title: 'Languages', groups: [{ label: '주요 사용', values: ['Java', 'JavaScript', 'HTML5', 'CSS3'] }, { label: '사용 경험', values: ['SQL', 'Shell Script', 'Python', 'C', 'R'] }] },
+              { icon: '▣', title: 'Frontend', groups: [{ label: '라이브러리·프레임워크', values: ['React.js', 'Vue.js', 'Redux', 'Pinia'] }, { label: '빌드·통신', values: ['Vite', 'Axios', 'Fetch API'] }, { label: '스타일링', values: ['Responsive Layout', 'UI/UX Design', 'CSS Modules'] }] },
+              { icon: '⚙', title: 'Backend', groups: [{ label: '프레임워크', values: ['Spring Boot', 'Spring MVC', 'JSP', 'Web Servlet', 'Thymeleaf'] }, { label: '데이터 접근', values: ['JPA', 'MyBatis', 'JDBC'] }, { label: '보안·검증', values: ['REST API', 'Spring Security', 'Validation'] }] },
+              { icon: '◎', title: 'Database & Infra', groups: [{ label: 'Database', values: ['Oracle DB', 'PostgreSQL', 'MySQL'] }, { label: 'Server', values: ['Linux', 'CentOS', 'Apache', 'Tomcat'] }, { label: 'Infra', values: ['Docker', 'AWS', 'Raspberry Pi', 'MQTT'] }] },
+              { icon: '⌘', title: 'Tools & Workflow', groups: [{ label: '개발 도구', values: ['VS Code', 'IntelliJ IDEA', 'Eclipse', 'Antigravity IDE'] }, { label: '협업·버전관리', values: ['Git', 'GitHub', 'SVN', 'Notion'] }, { label: '테스트·API', values: ['Postman', 'Maven', 'Gradle'] }] },
+              { icon: '✦', title: 'Learning & Expanding', groups: [{ label: 'AI·데이터', values: ['FastAPI', 'PyTorch', 'OpenCV', 'YOLO', 'OCR'] }] },
+            ],
+            strengths: [
+              { icon: '⚙', title: 'Backend Foundation', stack: 'Java · Spring Boot · JPA · REST API', body: '서버 로직, 데이터 흐름, API 구조를 중심으로 기능을 구현합니다.' },
+              { icon: '▣', title: 'Frontend Implementation', stack: 'React · Vue · Responsive UI', body: '컴포넌트 기반 화면과 사용자 흐름을 고려한 UI를 구성합니다.' },
+              { icon: '</>', title: 'Operations Experience', stack: 'Linux · CentOS · Monitoring · Maintenance', body: '웹 서버 운영, 장애 확인, 유지보수 경험을 바탕으로 안정성을 고려합니다.' },
+              { icon: '⑂', title: 'Collaboration', stack: 'GitHub · Notion · Postman · Documentation', body: '작업 내용과 API 흐름을 문서화하고 협업 도구를 활용합니다.' },
+            ],
+            architecture: [
+              { icon: '▤', title: 'Client UI', body: 'React, Vue 기반 컴포넌트 화면과 사용자 흐름을 먼저 정리합니다.' },
+              { icon: '⚙', title: 'Server Logic', body: 'Spring Boot API, 검증 로직, 비즈니스 흐름을 기준으로 기능을 구현합니다.' },
+              { icon: '◎', title: 'Data Flow', body: 'JPA, MyBatis, Oracle DB, PostgreSQL을 활용해 데이터 흐름을 연결합니다.' },
+              { icon: '▣', title: 'Operation', body: 'Linux 서버 운영 경험을 바탕으로 배포, 확인, 유지보수 관점을 함께 봅니다.' },
+            ],
+            workflowItems: [
+              { step: '01', icon: '{}', title: '기능 구조화', body: '요구사항을 화면, API, 데이터 단위로 나눠 구현 범위를 정리합니다.' },
+              { step: '02', icon: '⑂', title: '구현과 협업', body: 'GitHub, Notion, Postman을 활용해 작업 내용과 API 흐름을 공유합니다.' },
+              { step: '03', icon: '↺', title: '검증과 정리', body: '빌드, 화면 확인, 문서화를 통해 결과물을 다시 확인합니다.' },
+            ],
+            careerGroups: [
+              { key: 'academic', label: 'Academic', title: '학력사항' },
+              { key: 'education', label: 'Education', title: '교육사항' },
+              { key: 'career', label: 'Career', title: '경력사항', summary: '총 1년 9개월' },
+            ],
+            careerItems: [
+              { section: 'education', type: 'Education', title: '스마트 모빌리티 DX Academy', org: 'MBC 아카데미 컴퓨터 교육센터', period: '2025.12 - Present', body: '웹설계 기초, AI 프로그래밍, Vue, UI/UX 설계 및 제작 학습 중.' },
+              { section: 'academic', type: 'Academic', title: '컴퓨터공학과', org: '방송통신대학교', period: '2024.03 - Present', body: '컴퓨터공학 전공 지식 습득 및 실무 학습 중.' },
+              { section: 'career', type: 'Tech Support', title: '기술지원 사원', org: '(주)제윤', url: 'https://www.jeyun.com/', period: '2023.10 - 2024.10', body: 'Linux/CentOS 환경 웹 서버 배포 및 모니터링, 장애 원인 분석과 복구 대응.' },
+              { section: 'education', type: 'Training', title: 'Java 웹 앱 개발 통합 과정', org: '코리아 IT 아카데미', period: '2022.06 - 2023.02', body: 'Java, Spring Boot, JPA, React.js 등 풀스택 개발 역량 강화.' },
+              { section: 'career', type: 'Internship', title: '웹개발 인턴', org: '주식회사 위미츠', url: 'https://www.wemeets.co.kr/', period: '2022.01 - 2022.04', body: 'Java/Spring 기반 백엔드 API 개발 및 데이터베이스 연동 실무 경험.' },
+              { section: 'education', type: 'Training', title: '자바 빅데이터 풀스택 과정', org: '인천직업능력교육원', period: '2021.06 - 2021.11', body: 'Java 기반 웹 개발, 빅데이터 처리, 데이터베이스 연동 및 풀스택 개발 기초 학습.' },
+              { section: 'career', type: 'Administration', title: '관리팀 사원', org: '(주)화성', period: '2020.12 - 2021.06', body: 'MES 제조실행시스템 운영 및 데이터 관리 담당.' },
+              { section: 'academic', type: 'Academic', title: '컴퓨터정보전자과 디지털전자전공', org: '구미대학교', period: '2012.03 - 2014.02', body: '컴퓨터정보전자 및 디지털전자 전공 과정 이수.' },
+            ],
+            projectFilters: [{ label: '전체', value: 'all' }, { label: '개인', value: 'personal' }, { label: '팀', value: 'team' }, { label: '실무', value: 'work' }],
+            projects: [],
+          };
+        },
+        computed: {
+          nodeByLabel() {
+            const map = { [coreNodeLabel]: { label: coreNodeLabel, x: 50, y: 50, size: 'core' } };
+            this.mindMapNodes.forEach((node) => {
+              map[node.label] = node;
+            });
+            return map;
+          },
+          childMap() {
+            return this.mindMapNodes.reduce((acc, node) => {
+              if (node.parent) {
+                acc[node.parent] = [...(acc[node.parent] || []), node.label];
+              }
+              return acc;
+            }, {});
+          },
+          networkLinks() {
+            const hierarchyLinks = this.mindMapNodes.map((node) => ({ from: node.parent || coreNodeLabel, to: node.label, type: node.parent ? 'branch' : 'hub' }));
+            const bridgeLinks = this.networkBridges.map(([from, to]) => ({ from, to, type: 'bridge' }));
+            return [...hierarchyLinks, ...bridgeLinks].filter((link) => this.nodeByLabel[link.from] && this.nodeByLabel[link.to]);
+          },
+          activeDetails() {
+            const activeParent = this.mindMapNodes.find((node) => node.label === this.activeNode)?.parent;
+            return this.mindMapDetails[this.activeNode] || this.mindMapDetails[activeParent] || { title: this.activeNode || coreNodeLabel, body: '선택한 키워드는 연결된 상위 역량 안에서 함께 사용되는 기술입니다.' };
+          },
+          filteredProjects() {
+            const sorted = [...this.projects].sort((a, b) => b.no - a.no);
+            if (this.activeFilter === 'all') return sorted;
+            return sorted.filter((project) => project.category === this.activeFilter);
+          },
+        },
+        created() {
+          this.projects = [
+            { no: 1, title: 'Shop_Portfolio', category: 'personal', image: '/assets/shop-portfolio-project.png', tags: ['Java', 'Web Servlet', 'CSS3'], summary: 'Java Web Servlet을 기반으로 상품 목록과 화면 흐름을 구현한 쇼핑몰 포트폴리오입니다.', role: 'Servlet 기반 화면 처리, 상품 데이터 흐름 구성, 쇼핑몰 UI 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/Shop_Portfolio' },
+            { no: 2, title: 'Web_Homepage', category: 'personal', image: '/assets/web-homepage-project.png', tags: ['HTML5', 'CSS3', 'JS'], summary: '시맨틱 태그와 반응형 레이아웃을 구현한 개인 웹사이트 프로젝트입니다.', role: '시맨틱 마크업, 반응형 레이아웃, 정적 페이지 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/Web_Homepage' },
+            { no: 3, title: 'Messenger Solution', category: 'work', image: '/assets/wemeets-homepage.png', tags: ['Java', 'Spring', 'Oracle DB'], summary: '전자회의 솔루션 및 기업용 메신저의 웹 버전 서버 개발에 참여하며 백엔드 API와 데이터베이스 연동을 담당했습니다.', role: 'Spring 기반 백엔드 API 개발, Oracle DB 연동', action: 'Company Site', url: 'https://www.wemeets.co.kr/' },
+            { no: 4, title: 'ProjectA (Team)', category: 'team', image: '/assets/projecta-team.png', tags: ['Java', 'Spring Boot', 'JPA', 'Public API'], summary: '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 공공데이터 API 기반 관광지 분류와 메인 화면 설계를 담당했습니다.', role: '팀장, 공공데이터 API 연동, 관광지 분류, 메인 화면 설계', action: 'GitHub Repo', url: 'https://github.com/baekks/Team-ProjectA', detail: { type: 'Team Project', overview: '한국 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 프로젝트 방향과 주요 화면 흐름을 정리했습니다.', roles: ['팀장 역할 수행', '공공데이터 API 연동', '전국 관광지 데이터 분류 및 화면 출력', '메인 화면 구조 설계'], features: ['공공데이터 API 기반 관광지 조회', '지역/유형별 관광지 분류', '메인 화면', '지역별 문화관광 콘텐츠 구성'], learned: ['외부 API 데이터를 서비스 화면에 맞게 분류하고 보여주는 흐름을 경험했습니다.', '팀장으로서 기능 범위와 화면 흐름을 정리하며 팀 프로젝트 진행을 조율했습니다.'] } },
+            { no: 5, title: 'Assembly Maintenance', category: 'work', image: '/assets/jeyun-homepage.png', tags: ['Linux', 'CentOS', 'Shell Script'], summary: '의회 홈페이지의 서버 유지보수와 장애 처리를 담당하며 웹 서버 배포 및 운영 모니터링을 수행한 실무 경험입니다.', role: 'Linux 서버 유지보수, 배포 확인, 장애 대응', action: 'Company Site', url: 'https://www.jeyun.com/' },
+            { no: 6, title: 'Gyeongju Culture Tour', category: 'personal', image: '/assets/gyeongju-tour-project.png', tags: ['HTML5', 'CSS3', 'JavaScript'], summary: '스마트 모빌리티 DX Academy 미니 1차 개인 프로젝트입니다. HTML/CSS/JavaScript만으로 경주 문화관광 소개형 정적 웹사이트를 구성했습니다.', role: '정적 웹사이트 구조 설계, 관광 콘텐츠 화면 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/baekks.github.io' },
+            { no: 7, title: 'Jeju Culture & Tourism', category: 'team', image: '/assets/jeju-culture-tourism.png', tags: ['HTML5', 'CSS3', 'JavaScript', 'Thymeleaf'], summary: '제주 문화관광 정보를 소개하는 웹 프로젝트입니다. 초기 프론트 구현 후 백엔드 연동에 맞춰 Thymeleaf 화면으로 전환했습니다.', role: '메인 화면, 커뮤니티, 회원가입, 로그인 화면 구현 및 Thymeleaf 전환', action: 'GitHub Repo', url: 'https://github.com/baekks/hwandroid921.github.io', detail: { type: 'Team Project', overview: '제주 관광지, 여행 코스, 축제 정보를 소개하는 문화관광 웹사이트입니다. 정적 프론트 화면을 먼저 구성한 뒤, 백엔드 연동 과정에서 Thymeleaf 기반 화면으로 옮겼습니다.', roles: ['메인 화면 레이아웃 구현', '커뮤니티 화면 구성', '회원가입 및 로그인 화면 구현', '백엔드 연동을 위한 Thymeleaf 화면 전환'], features: ['메인 화면', '커뮤니티 화면', '회원가입 화면', '로그인 화면', 'Thymeleaf 템플릿 적용'], learned: ['메인에서 주요 콘텐츠로 이어지는 사용자 흐름을 고려했습니다.', '정적 화면을 서버 템플릿 구조로 옮기며 백엔드 데이터와 연결되는 화면 구성을 경험했습니다.'] } },
+            { no: 8, title: 'LUXE SHOP', category: 'personal', image: '/assets/luxe-shop-project.png', tags: ['Vue', 'Vite', 'Frontend'], summary: '스마트 모빌리티 DX Academy 미니 2차 개인 프로젝트입니다. Vite 기반 프론트엔드와 JSON 상품 데이터를 활용해 쇼핑몰 화면을 구현했습니다.', role: 'Vue/Vite 쇼핑몰 화면 구현, JSON 상품 데이터 활용', action: 'GitHub Repo', url: 'https://github.com/baekks/baekks.github.io' },
+            { no: 9, title: 'ReadMe', category: 'team', image: '/assets/readme-project.png', tags: ['Vue', 'Book Store', 'Team Project'], summary: '스마트 모빌리티 DX Academy 미니 2차 프로젝트로, 도서 탐색부터 장바구니, 주문, 결제, 배송 흐름까지 목표로 한 도서 쇼핑몰 웹 서비스입니다.', role: '상품, 주문, 결제, 배송 흐름 화면 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/lasr3423.github.io', detail: { type: 'Team Project', overview: '도서를 탐색하고 장바구니에 담은 뒤 주문, 결제, 배송으로 이어지는 흐름을 목표로 제작한 Vue 기반 도서 쇼핑몰 웹 서비스입니다.', roles: ['상품 목록 및 상세 화면 구현', '장바구니와 주문 흐름 구성', '결제 화면 및 배송 흐름 구현', '회원/커뮤니티를 제외한 쇼핑몰 주요 화면 담당'], features: ['도서 목록/상세', '장바구니', '주문 및 결제 흐름', '배송 상태 화면'], learned: ['쇼핑몰 서비스에서 상품 탐색부터 배송까지 이어지는 사용자 흐름을 화면 단위로 정리했습니다.', '네이버페이, 카카오페이, 토스페이 연동을 검토하며 결제 API 연결 과정의 제약과 보완점을 확인했습니다.'] } },
+            { no: 10, title: 'LogMile', category: 'team', image: '/assets/logmile-project.png', tags: ['Vue', 'Vite', 'Team Project'], summary: '스마트 모빌리티 DX Academy 1차 본 프로젝트로, 직접 기획한 주제가 선정되어 제작한 화물차 운수업 피로도 모니터링 시뮬레이션 웹 서비스입니다.', role: '프로젝트 기획, 산출물 정리, 프론트엔드 및 시뮬레이션 화면 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/logmile', detail: { type: 'Team Project', overview: '화물차 운수업 환경을 기준으로 피로도 모니터링 흐름을 시뮬레이션한 웹 서비스입니다. 제안한 프로젝트 주제가 선정되어 기획과 산출물 정리에 참여했습니다.', roles: ['프로젝트 주제 기획 및 방향 정리', '기획 산출물 작성 및 정리', 'Vue 기반 프론트엔드 화면 구현', '피로도 모니터링 시뮬레이션 화면 작업'], features: ['피로도 모니터링 화면', '운행 상태 시뮬레이션', '결과 확인 화면', '반응형 UI 구성'], learned: ['서비스 주제를 기능 단위로 구체화하고 화면 흐름으로 연결하는 과정을 경험했습니다.', '시뮬레이션 상태 변화가 화면에 반영되는 구조를 학습했습니다.'] } },
+            { no: 11, title: 'Web Resume Portfolio', category: 'personal', image: '/assets/web-resume-version3.png', tags: ['React', 'Vite', 'Portfolio'], summary: 'React 기반으로 제작한 웹 이력서 포트폴리오입니다. 마인드맵 메인, 프로젝트 필터, 경력/기술 스택 구성을 포함한 인터랙티브 이력서입니다.', role: 'React 포트폴리오 UI, 네트워크 메인, Contact/Resume 연결', action: 'GitHub Repo', url: 'https://github.com/baekks/Web_Resume_Portfolio', detail: { type: 'Personal Project', overview: '이력, 기술 스택, 프로젝트, 학습 기록을 한 화면 흐름으로 정리한 React 기반 웹 포트폴리오입니다.', roles: ['네트워크 그래프 메인 구현', '프로젝트 필터 및 상세 정보 구성', 'Contact, Notion, Resume 연결'], features: ['인터랙티브 네트워크 메인', '학력/교육/경력 분리', '프로젝트 필터', '대표 프로젝트 상세 모달', 'Resume 다운로드'], learned: ['채용 담당자가 확인하기 쉬운 정보 구조를 기준으로 섹션을 재정리했습니다.', 'React 상태 관리와 CSS 반응형 레이아웃을 포트폴리오 화면에 적용했습니다.'] } },
+          ];
+        },
+        methods: {
+          enterPortfolio() {
+            if (this.launching) return;
+            this.launching = true;
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+            window.setTimeout(() => {
+              this.entered = true;
+              this.launching = false;
+              window.setTimeout(() => document.querySelector('#v2-top')?.scrollIntoView({ behavior: 'auto', block: 'start' }), 0);
+            }, 860);
+          },
+          handleGateWheel(event) {
+            if (event.deltaY > 12) this.enterPortfolio();
+          },
+          handleGateKeydown(event) {
+            if (['Enter', 'PageDown', 'ArrowDown', ' '].includes(event.key)) {
+              event.preventDefault();
+              this.enterPortfolio();
+            }
+          },
+          activateNode(label, event) {
+            this.activeNode = label;
+            if (event?.clientX && event?.clientY) {
+              const stage = event.currentTarget.closest('.v3-mindmap-stage');
+              const rect = stage.getBoundingClientRect();
+              this.tooltip = {
+                x: Math.min(Math.max(event.clientX - rect.left + 18, 12), Math.max(12, rect.width - 312)),
+                y: Math.min(Math.max(event.clientY - rect.top + 18, 12), Math.max(12, rect.height - 148)),
+                visible: true,
+              };
+            } else {
+              this.tooltip.visible = true;
+            }
+          },
+          resetActiveNode() {
+            this.activeNode = null;
+            this.tooltip.visible = false;
+          },
+          isRelated(node) {
+            if (!this.activeNode) return false;
+            if (this.activeNode === coreNodeLabel) return true;
+            if (node.label === this.activeNode || node.parent === this.activeNode) return true;
+            const activeParent = this.mindMapNodes.find((item) => item.label === this.activeNode)?.parent;
+            return Boolean(activeParent && (node.label === activeParent || node.parent === activeParent));
+          },
+          isLinkActive(link) {
+            if (!this.activeNode) return false;
+            if (this.activeNode === coreNodeLabel) return true;
+            const activeParent = this.mindMapNodes.find((item) => item.label === this.activeNode)?.parent;
+            return [link.from, link.to].includes(this.activeNode) || Boolean(activeParent && [link.from, link.to].includes(activeParent));
+          },
+          linkClass(link) {
+            if (!this.activeNode) return '';
+            return this.isLinkActive(link) ? 'is-active' : 'is-muted';
+          },
+        },
+        watch: {
+          entered(value) {
+            document.body.style.overflowY = value ? '' : 'hidden';
+            document.documentElement.style.overflowY = value ? '' : 'hidden';
+          },
+          selectedProject(value) {
+            document.body.style.overflow = value ? 'hidden' : '';
+          },
+        },
+        mounted() {
+          document.body.style.overflowY = '';
+          document.documentElement.style.overflowY = '';
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

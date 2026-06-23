@@ -1,3 +1,29 @@
+html,
+body,
+#app {
+  min-height: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
 .v2-shell {
   --v2-bg: #212842;
   --v2-paper: #C8D0DA;
@@ -2398,4 +2424,74 @@
   .v2-contact-links {
     grid-template-columns: 1fr;
   }
+}
+
+.v2-vue-icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  color: var(--v2-point);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.v2-skill-node > .v2-vue-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.v2-strength-icon,
+.v2-architecture-icon {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.v2-docs-icon {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.v2-workflow-glyph {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  color: var(--v2-point);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.v2-workflow-item > .v2-workflow-glyph {
+  font-size: 20px;
+}
+
+.v2-contact-glyph {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  color: var(--v2-point);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.v2-modal-close {
+  font-size: 1.3rem;
+  line-height: 1;
 }

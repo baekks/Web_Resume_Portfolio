@@ -12,6 +12,19 @@ const navItems = [
   { label: 'Contact', href: '#v2-contact' },
 ];
 
+const versionItems = [
+  {
+    label: 'Current Version 1',
+    meta: 'HTML',
+    href: '/versions/html/index.html',
+  },
+  {
+    label: 'Current Version 2',
+    meta: 'Vue.js',
+    href: '/versions/vue/index.html',
+  },
+];
+
 export default function Header({ entered }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -46,9 +59,21 @@ export default function Header({ entered }) {
           </nav>
         </>
       ) : (
-        <a href="/" className="v2-current-link">
-          Current Version
-        </a>
+        <div className="v2-version-links" aria-label="포트폴리오 버전 링크">
+          {versionItems.map((item) =>
+            item.href ? (
+              <a className="v2-version-link" href={item.href} key={item.label}>
+                <span>{item.label}</span>
+                <em>{item.meta}</em>
+              </a>
+            ) : (
+              <span className="v2-version-link is-disabled" key={item.label} aria-disabled="true">
+                <span>{item.label}</span>
+                <em>{item.meta}</em>
+              </span>
+            ),
+          )}
+        </div>
       )}
     </header>
   );
