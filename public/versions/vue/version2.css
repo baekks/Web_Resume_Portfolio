@@ -51,6 +51,54 @@ img {
   color: var(--v2-text-readable);
 }
 
+.v2-shell.is-vue-version {
+  --v2-bg: #1E273B;
+  --v2-paper: #D6E8EA;
+  --v2-point: #8BDCCB;
+  --v2-point-soft: rgba(139, 220, 203, 0.14);
+  --v2-text-strong: #F2FBFA;
+  --v2-text-readable: #DDEFF1;
+  --v2-text-muted: rgba(221, 239, 241, 0.76);
+  --v2-line: rgba(204, 218, 224, 0.24);
+  --v2-surface: rgba(34, 46, 70, 0.78);
+  background:
+    linear-gradient(rgba(214, 232, 234, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 232, 234, 0.034) 1px, transparent 1px),
+    radial-gradient(circle at 76% 16%, rgba(139, 220, 203, 0.1), transparent 24rem),
+    radial-gradient(circle at 12% 82%, rgba(139, 170, 225, 0.08), transparent 22rem),
+    var(--v2-bg);
+  background-size:
+    42px 42px,
+    42px 42px,
+    auto,
+    auto,
+    auto;
+}
+
+.v2-shell.is-html-version {
+  --v2-bg: #241F35;
+  --v2-paper: #E9D6D0;
+  --v2-point: #F3B59F;
+  --v2-point-soft: rgba(243, 181, 159, 0.14);
+  --v2-text-strong: #FFF6F2;
+  --v2-text-readable: #EEDDD8;
+  --v2-text-muted: rgba(238, 221, 216, 0.76);
+  --v2-line: rgba(226, 212, 215, 0.24);
+  --v2-surface: rgba(44, 38, 62, 0.78);
+  background:
+    linear-gradient(rgba(233, 214, 208, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 214, 208, 0.034) 1px, transparent 1px),
+    radial-gradient(circle at 74% 18%, rgba(243, 181, 159, 0.1), transparent 24rem),
+    radial-gradient(circle at 16% 78%, rgba(140, 154, 220, 0.08), transparent 22rem),
+    var(--v2-bg);
+  background-size:
+    42px 42px,
+    42px 42px,
+    auto,
+    auto,
+    auto;
+}
+
 .v2-shell::selection,
 .v2-shell *::selection {
   background: var(--v2-point);
@@ -74,6 +122,63 @@ img {
   border-bottom: 1px solid rgba(200, 208, 218, 0.12);
   background: rgba(33, 40, 66, 0.86);
   backdrop-filter: blur(14px);
+}
+
+.v2-shell.is-vue-version .v2-header {
+  border-bottom-color: rgba(204, 218, 224, 0.14);
+  background: rgba(30, 39, 59, 0.9);
+}
+
+.v2-shell.is-html-version .v2-header {
+  border-bottom-color: rgba(226, 212, 215, 0.14);
+  background: rgba(36, 31, 53, 0.9);
+}
+
+.v2-shell.is-vue-version .v2-panel,
+.v2-shell.is-vue-version .v2-contact,
+.v2-shell.is-vue-version .v2-node,
+.v2-shell.is-vue-version .v2-strength-card,
+.v2-shell.is-vue-version .v2-architecture-card,
+.v2-shell.is-vue-version .v2-workflow-item,
+.v2-shell.is-vue-version .v2-project-card,
+.v2-shell.is-vue-version .v2-docs-card,
+.v2-shell.is-vue-version .v2-career-group {
+  border-color: rgba(204, 218, 224, 0.2);
+  background-color: rgba(34, 46, 70, 0.58);
+}
+
+.v2-shell.is-html-version .v2-panel,
+.v2-shell.is-html-version .v2-contact,
+.v2-shell.is-html-version .v2-node,
+.v2-shell.is-html-version .v2-strength-card,
+.v2-shell.is-html-version .v2-architecture-card,
+.v2-shell.is-html-version .v2-workflow-item,
+.v2-shell.is-html-version .v2-project-card,
+.v2-shell.is-html-version .v2-docs-card,
+.v2-shell.is-html-version .v2-career-group {
+  border-color: rgba(226, 212, 215, 0.2);
+  background-color: rgba(44, 38, 62, 0.58);
+}
+
+.v2-shell.is-vue-version .v2-project-tags span,
+.v2-shell.is-vue-version .v2-skill-cluster em {
+  background-color: rgba(25, 35, 54, 0.76);
+}
+
+.v2-shell.is-html-version .v2-project-tags span,
+.v2-shell.is-html-version .v2-skill-cluster em {
+  background-color: rgba(34, 29, 46, 0.76);
+}
+
+.v2-shell.is-vue-version .v2-project-filter button:hover,
+.v2-shell.is-vue-version .v2-project-filter button:focus-visible,
+.v2-shell.is-vue-version .v2-project-filter button.is-active,
+.v2-shell.is-html-version .v2-project-filter button:hover,
+.v2-shell.is-html-version .v2-project-filter button:focus-visible,
+.v2-shell.is-html-version .v2-project-filter button.is-active {
+  border-color: var(--v2-point);
+  background: rgba(200, 208, 218, 0.08);
+  color: var(--v2-point);
 }
 
 .v2-brand,
@@ -1597,6 +1702,51 @@ img {
   line-height: 1.55;
 }
 
+.v2-shell.is-vue-version .v2-career-group {
+  border-color: rgba(204, 218, 224, 0.2);
+  background: rgba(34, 46, 70, 0.58);
+}
+
+.v2-shell.is-html-version .v2-career-group {
+  border-color: rgba(226, 212, 215, 0.2);
+  background: rgba(44, 38, 62, 0.58);
+}
+
+.v2-shell.is-vue-version .v2-timeline article,
+.v2-shell.is-html-version .v2-timeline article {
+  border-bottom-color: var(--v2-line);
+}
+
+.v2-shell.is-vue-version .v2-timeline time,
+.v2-shell.is-vue-version .v2-career-group-head span,
+.v2-shell.is-vue-version .v2-timeline article div > span,
+.v2-shell.is-html-version .v2-timeline time,
+.v2-shell.is-html-version .v2-career-group-head span,
+.v2-shell.is-html-version .v2-timeline article div > span {
+  color: var(--v2-point);
+}
+
+.v2-shell.is-vue-version .v2-career-group-head h3,
+.v2-shell.is-vue-version .v2-timeline h4,
+.v2-shell.is-html-version .v2-career-group-head h3,
+.v2-shell.is-html-version .v2-timeline h4 {
+  color: var(--v2-text-strong);
+}
+
+.v2-shell.is-vue-version .v2-timeline article strong,
+.v2-shell.is-vue-version .v2-career-link,
+.v2-shell.is-html-version .v2-timeline article strong,
+.v2-shell.is-html-version .v2-career-link {
+  color: var(--v2-text-muted);
+}
+
+.v2-shell.is-vue-version .v2-career-link:hover,
+.v2-shell.is-vue-version .v2-career-link:focus-visible,
+.v2-shell.is-html-version .v2-career-link:hover,
+.v2-shell.is-html-version .v2-career-link:focus-visible {
+  color: var(--v2-point);
+}
+
 .v2-project-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1978,7 +2128,7 @@ img {
 }
 
 .v2-timeline time {
-  color: #BFD0FF;
+  color: var(--v2-point);
   font-size: 0.86rem;
   line-height: 1.4;
 }
@@ -1995,7 +2145,7 @@ img {
 
 .v2-timeline article div > span,
 .v2-project-role span {
-  color: rgba(191, 208, 255, 0.9);
+  color: var(--v2-point);
 }
 
 .v2-project-role {
@@ -2494,4 +2644,47 @@ img {
 .v2-modal-close {
   font-size: 1.3rem;
   line-height: 1;
+}
+
+.v2-shell.is-vue-version .v2-career-group,
+.v2-shell.is-html-version .v2-career-group {
+  border-color: var(--v2-line);
+  background-color: var(--v2-surface);
+}
+
+.v2-shell.is-vue-version .v2-timeline article,
+.v2-shell.is-html-version .v2-timeline article {
+  border-bottom-color: var(--v2-line);
+}
+
+.v2-shell.is-vue-version .v2-timeline time,
+.v2-shell.is-vue-version .v2-career-group-head span,
+.v2-shell.is-vue-version .v2-timeline article div > span,
+.v2-shell.is-html-version .v2-timeline time,
+.v2-shell.is-html-version .v2-career-group-head span,
+.v2-shell.is-html-version .v2-timeline article div > span {
+  color: var(--v2-point);
+}
+
+.v2-shell.is-vue-version .v2-career-group-head h3,
+.v2-shell.is-vue-version .v2-timeline h4,
+.v2-shell.is-html-version .v2-career-group-head h3,
+.v2-shell.is-html-version .v2-timeline h4 {
+  color: var(--v2-text-strong);
+}
+
+.v2-shell.is-vue-version .v2-career-total,
+.v2-shell.is-vue-version .v2-timeline article strong,
+.v2-shell.is-vue-version .v2-career-link,
+.v2-shell.is-html-version .v2-career-total,
+.v2-shell.is-html-version .v2-timeline article strong,
+.v2-shell.is-html-version .v2-career-link {
+  color: var(--v2-text-muted);
+}
+
+.v2-shell.is-vue-version .v2-career-link:hover,
+.v2-shell.is-vue-version .v2-career-link:focus-visible,
+.v2-shell.is-html-version .v2-career-link:hover,
+.v2-shell.is-html-version .v2-career-link:focus-visible {
+  color: var(--v2-point);
 }

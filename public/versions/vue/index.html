@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="app">
-    <main :class="['v2-shell', 'v3-shell', entered ? 'is-rendered' : 'is-gate', launching ? 'is-launching' : '']">
+    <main :class="['v2-shell', 'v3-shell', 'is-vue-version', entered ? 'is-rendered' : 'is-gate', launching ? 'is-launching' : '']">
       <header :class="['v2-header', isMenuOpen ? 'is-menu-open' : '']">
         <a href="/" class="v2-brand" @click="isMenuOpen = false">
           <span class="v2-brand-desktop">Beak's Dev</span>
