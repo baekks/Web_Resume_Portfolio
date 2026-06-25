@@ -268,6 +268,10 @@
                     Details
                     <span aria-hidden="true">→</span>
                   </button>
+                  <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" rel="noreferrer">
+                    {{ project.demoAction || 'Live Demo' }}
+                    <span aria-hidden="true">↗</span>
+                  </a>
                   <a :href="project.url || '#v2-top'" :target="project.url ? '_blank' : undefined" :rel="project.url ? 'noreferrer' : undefined">
                     {{ project.action }}
                     <span aria-hidden="true">↗</span>
@@ -344,11 +348,33 @@
                 <li v-for="item in selectedProject.detail.learned" :key="item">{{ item }}</li>
               </ul>
             </div>
+            <div v-if="selectedProject.detail.accounts" class="v2-modal-section v2-modal-account-section">
+              <h4>테스트 계정</h4>
+              <div class="v2-modal-accounts">
+                <div class="v2-modal-account-column" v-for="account in selectedProject.detail.accounts" :key="account.id">
+                  <strong>{{ account.role }}</strong>
+                  <span>
+                    <b>ID</b>
+                    <code>{{ account.id }}</code>
+                  </span>
+                  <span>
+                    <b>PW</b>
+                    <code>{{ account.password }}</code>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <a class="v2-modal-link" :href="selectedProject.url" target="_blank" rel="noreferrer">
-            {{ selectedProject.action }}
-            <span aria-hidden="true">↗</span>
-          </a>
+          <div class="v2-modal-links">
+            <a v-if="selectedProject.demoUrl" class="v2-modal-link" :href="selectedProject.demoUrl" target="_blank" rel="noreferrer">
+              {{ selectedProject.demoAction || 'Live Demo' }}
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="v2-modal-link" :href="selectedProject.url" target="_blank" rel="noreferrer">
+              {{ selectedProject.action }}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </article>
       </div>
     </main>
@@ -506,7 +532,7 @@
             { no: 1, title: 'Shop_Portfolio', category: 'personal', image: '/assets/shop-portfolio-project.png', tags: ['Java', 'Web Servlet', 'CSS3'], summary: 'Java Web Servlet을 기반으로 상품 목록과 화면 흐름을 구현한 쇼핑몰 포트폴리오입니다.', role: 'Servlet 기반 화면 처리, 상품 데이터 흐름 구성, 쇼핑몰 UI 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/Shop_Portfolio' },
             { no: 2, title: 'Web_Homepage', category: 'personal', image: '/assets/web-homepage-project.png', tags: ['HTML5', 'CSS3', 'JS'], summary: '시맨틱 태그와 반응형 레이아웃을 구현한 개인 웹사이트 프로젝트입니다.', role: '시맨틱 마크업, 반응형 레이아웃, 정적 페이지 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/Web_Homepage' },
             { no: 3, title: 'Messenger Solution', category: 'work', image: '/assets/wemeets-homepage.png', tags: ['Java', 'Spring', 'Oracle DB'], summary: '전자회의 솔루션 및 기업용 메신저의 웹 버전 서버 개발에 참여하며 백엔드 API와 데이터베이스 연동을 담당했습니다.', role: 'Spring 기반 백엔드 API 개발, Oracle DB 연동', action: 'Company Site', url: 'https://www.wemeets.co.kr/' },
-            { no: 4, title: 'ProjectA (Team)', category: 'team', image: '/assets/projecta-team.png', tags: ['Java', 'Spring Boot', 'JPA', 'Public API'], summary: '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 공공데이터 API 기반 관광지 분류와 메인 화면 설계를 담당했습니다.', role: '팀장, 공공데이터 API 연동, 관광지 분류, 메인 화면 설계', action: 'GitHub Repo', url: 'https://github.com/baekks/Team-ProjectA', detail: { type: 'Team Project', overview: '한국 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 프로젝트 방향과 주요 화면 흐름을 정리했습니다.', roles: ['팀장 역할 수행', '공공데이터 API 연동', '전국 관광지 데이터 분류 및 화면 출력', '메인 화면 구조 설계'], features: ['공공데이터 API 기반 관광지 조회', '지역/유형별 관광지 분류', '메인 화면', '지역별 문화관광 콘텐츠 구성'], learned: ['외부 API 데이터를 서비스 화면에 맞게 분류하고 보여주는 흐름을 경험했습니다.', '팀장으로서 기능 범위와 화면 흐름을 정리하며 팀 프로젝트 진행을 조율했습니다.'] } },
+            { no: 4, title: 'ProjectA (Team)', category: 'team', image: '/assets/projecta-team.png', tags: ['Java', 'Spring Boot', 'JPA', 'Public API'], summary: '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 공공데이터 API 기반 관광지 분류와 메인 화면 설계를 담당했습니다.', role: '팀장, 공공데이터 API 연동, 관광지 분류, 메인 화면 설계', demoAction: 'Live Demo', demoUrl: 'https://tourgo-yhjs.onrender.com/main_view', action: 'GitHub Repo', url: 'https://github.com/baekks/Team-ProjectA', detail: { type: 'Team Project', overview: '한국 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 프로젝트 방향과 주요 화면 흐름을 정리했습니다.', roles: ['팀장 역할 수행', '공공데이터 API 연동', '전국 관광지 데이터 분류 및 화면 출력', '메인 화면 구조 설계'], features: ['공공데이터 API 기반 관광지 조회', '지역/유형별 관광지 분류', '메인 화면', '지역별 문화관광 콘텐츠 구성'], accounts: [{ role: '관리자', id: 'demo_admin', password: 'Pass1234!' }, { role: '사용자', id: 'demo_user01', password: 'Pass1234!' }], learned: ['외부 API 데이터를 서비스 화면에 맞게 분류하고 보여주는 흐름을 경험했습니다.', '팀장으로서 기능 범위와 화면 흐름을 정리하며 팀 프로젝트 진행을 조율했습니다.'] } },
             { no: 5, title: 'Assembly Maintenance', category: 'work', image: '/assets/jeyun-homepage.png', tags: ['Linux', 'CentOS', 'Shell Script'], summary: '의회 홈페이지의 서버 유지보수와 장애 처리를 담당하며 웹 서버 배포 및 운영 모니터링을 수행한 실무 경험입니다.', role: 'Linux 서버 유지보수, 배포 확인, 장애 대응', action: 'Company Site', url: 'https://www.jeyun.com/' },
             { no: 6, title: 'Gyeongju Culture Tour', category: 'personal', image: '/assets/gyeongju-tour-project.png', tags: ['HTML5', 'CSS3', 'JavaScript'], summary: '스마트 모빌리티 DX Academy 미니 1차 개인 프로젝트입니다. HTML/CSS/JavaScript만으로 경주 문화관광 소개형 정적 웹사이트를 구성했습니다.', role: '정적 웹사이트 구조 설계, 관광 콘텐츠 화면 구현', action: 'GitHub Repo', url: 'https://github.com/baekks/baekks.github.io' },
             { no: 7, title: 'Jeju Culture & Tourism', category: 'team', image: '/assets/jeju-culture-tourism.png', tags: ['HTML5', 'CSS3', 'JavaScript', 'Thymeleaf'], summary: '제주 문화관광 정보를 소개하는 웹 프로젝트입니다. 초기 프론트 구현 후 백엔드 연동에 맞춰 Thymeleaf 화면으로 전환했습니다.', role: '메인 화면, 커뮤니티, 회원가입, 로그인 화면 구현 및 Thymeleaf 전환', action: 'GitHub Repo', url: 'https://github.com/baekks/hwandroid921.github.io', detail: { type: 'Team Project', overview: '제주 관광지, 여행 코스, 축제 정보를 소개하는 문화관광 웹사이트입니다. 정적 프론트 화면을 먼저 구성한 뒤, 백엔드 연동 과정에서 Thymeleaf 기반 화면으로 옮겼습니다.', roles: ['메인 화면 레이아웃 구현', '커뮤니티 화면 구성', '회원가입 및 로그인 화면 구현', '백엔드 연동을 위한 Thymeleaf 화면 전환'], features: ['메인 화면', '커뮤니티 화면', '회원가입 화면', '로그인 화면', 'Thymeleaf 템플릿 적용'], learned: ['메인에서 주요 콘텐츠로 이어지는 사용자 흐름을 고려했습니다.', '정적 화면을 서버 템플릿 구조로 옮기며 백엔드 데이터와 연결되는 화면 구성을 경험했습니다.'] } },

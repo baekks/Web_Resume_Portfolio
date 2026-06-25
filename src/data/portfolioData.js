@@ -52,11 +52,17 @@ export const projects = [
     summary:
       '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 공공데이터 API 기반 관광지 분류와 메인 화면 설계를 담당했습니다.',
     role: '팀장, 공공데이터 API 연동, 관광지 분류, 메인 화면 설계',
+    demoAction: 'Live Demo',
+    demoUrl: 'https://tourgo-yhjs.onrender.com/main_view',
     detail: {
       type: 'Team Project',
       overview: '한국 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 프로젝트 방향과 주요 화면 흐름을 정리했습니다.',
       roles: ['팀장 역할 수행', '공공데이터 API 연동', '전국 관광지 데이터 분류 및 화면 출력', '메인 화면 구조 설계'],
       features: ['공공데이터 API 기반 관광지 조회', '지역/유형별 관광지 분류', '메인 화면', '지역별 문화관광 콘텐츠 구성'],
+      accounts: [
+        { role: '관리자', id: 'demo_admin', password: 'Pass1234!' },
+        { role: '사용자', id: 'demo_user01', password: 'Pass1234!' },
+      ],
       learned: [
         '외부 API 데이터를 서비스 화면에 맞게 분류하고 보여주는 흐름을 경험했습니다.',
         '팀장으로서 기능 범위와 화면 흐름을 정리하며 팀 프로젝트 진행을 조율했습니다.',

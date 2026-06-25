@@ -69,11 +69,39 @@ export default function Projects() {
               ))}
             </ul>
           </div>
+          {selectedProject.detail.accounts ? (
+            <div className="v2-modal-section v2-modal-account-section">
+              <h4>테스트 계정</h4>
+              <div className="v2-modal-accounts">
+                {selectedProject.detail.accounts.map((account) => (
+                  <div className="v2-modal-account-column" key={account.id}>
+                    <strong>{account.role}</strong>
+                    <span>
+                      <b>ID</b>
+                      <code>{account.id}</code>
+                    </span>
+                    <span>
+                      <b>PW</b>
+                      <code>{account.password}</code>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
-        <a className="v2-modal-link" href={selectedProject.url} target="_blank" rel="noreferrer">
-          {selectedProject.action}
-          <ExternalLink size={14} />
-        </a>
+        <div className="v2-modal-links">
+          {selectedProject.demoUrl ? (
+            <a className="v2-modal-link" href={selectedProject.demoUrl} target="_blank" rel="noreferrer">
+              {selectedProject.demoAction ?? 'Live Demo'}
+              <ExternalLink size={14} />
+            </a>
+          ) : null}
+          <a className="v2-modal-link" href={selectedProject.url} target="_blank" rel="noreferrer">
+            {selectedProject.action}
+            <ExternalLink size={14} />
+          </a>
+        </div>
       </article>
     </div>
   ) : null;
@@ -141,6 +169,12 @@ export default function Projects() {
                     Details
                     <ArrowRight size={14} />
                   </button>
+                ) : null}
+                {project.demoUrl ? (
+                  <a href={project.demoUrl} target="_blank" rel="noreferrer">
+                    {project.demoAction ?? 'Live Demo'}
+                    <ExternalLink size={14} />
+                  </a>
                 ) : null}
                 <a href={project.url ?? '#v2-top'} target={project.url ? '_blank' : undefined} rel={project.url ? 'noreferrer' : undefined}>
                   {project.action}
