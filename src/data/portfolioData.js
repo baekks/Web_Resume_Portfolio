@@ -17,6 +17,7 @@ export const projects = [
     summary:
       'Java Web Servlet을 기반으로 상품 목록과 화면 흐름을 구현한 쇼핑몰 포트폴리오입니다.',
     role: 'Servlet 기반 화면 처리, 상품 데이터 흐름 구성, 쇼핑몰 UI 구현',
+    period: '2021.12.01 - 2022.01.07 · 2개월',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/Shop_Portfolio',
   },
@@ -28,6 +29,7 @@ export const projects = [
     tags: ['HTML5', 'CSS3', 'JS'],
     summary: '시맨틱 태그와 반응형 레이아웃을 구현한 개인 웹사이트 프로젝트입니다.',
     role: '시맨틱 마크업, 반응형 레이아웃, 정적 페이지 구현',
+    period: '2022.03.16 · 1일',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/Web_Homepage',
   },
@@ -40,6 +42,7 @@ export const projects = [
     summary:
       '전자회의 솔루션 및 기업용 메신저의 웹 버전 서버 개발에 참여하며 백엔드 API와 데이터베이스 연동을 담당했습니다.',
     role: 'Spring 기반 백엔드 API 개발, Oracle DB 연동',
+    period: '2022.01 - 2022.04 · 4개월',
     action: 'Company Site',
     url: 'https://www.wemeets.co.kr/',
   },
@@ -52,6 +55,7 @@ export const projects = [
     summary:
       '한국의 주요 관광지와 지역 정보를 제공하는 풀스택 문화관광 플랫폼입니다. 팀장을 맡아 공공데이터 API 기반 관광지 분류와 메인 화면 설계를 담당했습니다.',
     role: '팀장, 공공데이터 API 연동, 관광지 분류, 메인 화면 설계',
+    period: '2022.11.12 - 2023.03.07 · 약 4개월',
     demoAction: 'Live Demo',
     demoUrl: 'https://tourgo-yhjs.onrender.com/main_view',
     detail: {
@@ -80,6 +84,7 @@ export const projects = [
     summary:
       '의회 홈페이지의 서버 유지보수와 장애 처리를 담당하며 웹 서버 배포 및 운영 모니터링을 수행한 실무 경험입니다.',
     role: 'Linux 서버 유지보수, 배포 확인, 장애 대응',
+    period: '2023.10 - 2024.10 · 1년',
     action: 'Company Site',
     url: 'https://www.jeyun.com/',
   },
@@ -92,6 +97,7 @@ export const projects = [
     summary:
       '스마트 모빌리티 DX Academy 미니 1차 개인 프로젝트입니다. HTML/CSS/JavaScript만으로 경주 문화관광 소개형 정적 웹사이트를 구성했습니다.',
     role: '정적 웹사이트 구조 설계, 관광 콘텐츠 화면 구현',
+    period: '2026.01.15 - 2026.02.15 · 1개월',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/baekks.github.io',
   },
@@ -104,6 +110,9 @@ export const projects = [
     summary:
       '제주 문화관광 정보를 소개하는 웹 프로젝트입니다. 초기 프론트 구현 후 백엔드 연동에 맞춰 Thymeleaf 화면으로 전환했습니다.',
     role: '메인 화면, 커뮤니티, 회원가입, 로그인 화면 구현 및 Thymeleaf 전환',
+    period: '2026.02.02 - 2026.02.25 · 4주',
+    demoAction: 'Live Demo',
+    demoUrl: 'https://jeju.onrender.com',
     detail: {
       type: 'Team Project',
       overview:
@@ -127,6 +136,7 @@ export const projects = [
     summary:
       '스마트 모빌리티 DX Academy 미니 2차 개인 프로젝트입니다. Vite 기반 프론트엔드와 JSON 상품 데이터를 활용해 쇼핑몰 화면을 구현했습니다.',
     role: 'Vue/Vite 쇼핑몰 화면 구현, JSON 상품 데이터 활용',
+    period: '2026.02.15 - 2026.03.03 · 3주',
     action: 'GitHub Repo',
     url: 'https://github.com/baekks/baekks.github.io',
   },
@@ -139,6 +149,7 @@ export const projects = [
     summary:
       '스마트 모빌리티 DX Academy 미니 2차 프로젝트로, 도서 탐색부터 장바구니, 주문, 결제, 배송 흐름까지 목표로 한 도서 쇼핑몰 웹 서비스입니다.',
     role: '상품, 주문, 결제, 배송 흐름 화면 구현',
+    period: '2026.03.13 - 2026.04.12 · 5주',
     detail: {
       type: 'Team Project',
       overview:
@@ -151,7 +162,7 @@ export const projects = [
       ],
     },
     action: 'GitHub Repo',
-    url: 'https://github.com/baekks/lasr3423.github.io',
+    url: 'https://github.com/baekks/ReadMe',
   },
   {
     no: 10,
@@ -162,6 +173,9 @@ export const projects = [
     summary:
       '스마트 모빌리티 DX Academy 1차 본 프로젝트로, 직접 기획한 주제가 선정되어 제작한 화물차 운수업 피로도 모니터링 시뮬레이션 웹 서비스입니다.',
     role: '프로젝트 기획, 산출물 정리, 프론트엔드 및 시뮬레이션 화면 구현',
+    period: '2026.04.27 - 2026.06.01 · 5주',
+    demoAction: 'Live Demo',
+    demoUrl: 'http://54.180.150.210/',
     detail: {
       type: 'Team Project',
       overview:
@@ -182,6 +196,7 @@ export const projects = [
     summary:
       'React 기반으로 제작한 웹 이력서 포트폴리오입니다. 마인드맵 메인, 프로젝트 필터, 경력/기술 스택 구성을 포함한 인터랙티브 이력서입니다.',
     role: 'React 포트폴리오 UI, 네트워크 메인, Contact/Resume 연결',
+    period: '2026.06.09 - 2026.06.26 · 3주',
     detail: {
       type: 'Personal Project',
       overview: '이력, 기술 스택, 프로젝트, 학습 기록을 한 화면 흐름으로 정리한 React 기반 웹 포트폴리오입니다.',

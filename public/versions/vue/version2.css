@@ -2466,6 +2466,9 @@ img {
   .v2-version-link {
     min-height: 34px;
     padding: 0 8px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
   }
 
   .v2-version-link span {
@@ -2476,7 +2479,9 @@ img {
   }
 
   .v2-version-link em {
-    display: none;
+    display: block;
+    font-size: 0.58rem;
+    line-height: 1;
   }
 
   .v2-hero h1 {

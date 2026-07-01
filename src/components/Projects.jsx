@@ -155,7 +155,6 @@ export default function Projects() {
                 ))}
               </div>
               <h3>{project.title}</h3>
-              {project.period ? <span className="v2-project-period">{project.period}</span> : null}
               <p>{project.summary}</p>
               {project.role ? (
                 <div className="v2-project-role">
@@ -163,6 +162,7 @@ export default function Projects() {
                   <strong>{project.role}</strong>
                 </div>
               ) : null}
+              {project.period ? <span className="v2-project-period">{project.period}</span> : null}
               <div className="v2-project-actions">
                 {project.detail ? (
                   <button type="button" onClick={() => setSelectedProject(project)}>
